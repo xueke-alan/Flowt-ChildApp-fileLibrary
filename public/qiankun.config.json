@@ -1,0 +1,22 @@
+{
+  "name": "flowt_micro_fileLibrary",
+  "title": "文件库",
+  "baseUrl": "fileLibrary",
+  "iconName": "PeopleCommunity24Regular",
+  "children": [
+    {
+      "path": "user",
+      "meta": {
+        "title": "标准库",
+        "iconName": "Guest24Regular"
+      }
+    },
+    {
+      "path": "role",
+      "meta": {
+        "title": "测试资料",
+        "iconName": "PersonTag24Regular"
+      }
+    }
+  ]
+}
