@@ -1,5 +1,6 @@
 <template >
-  <n-card class="card" content-style="display: flex;flex-direction: column;padding-top: 10px;overflow: hidden;height: 100%;"
+  <n-card class="card"
+    content-style="display: flex;flex-direction: column;padding-top: 10px;overflow: hidden;height: 100%;"
     :key="matchedRouter.name">
     <div class="header">
       <n-tabs class="tabs" type="line" :value="currentRouteName" @update:value="(name) => { router.push({ name }) }">

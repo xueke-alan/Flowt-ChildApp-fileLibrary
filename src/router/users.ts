@@ -6,12 +6,10 @@ import {
 
 const routes = [
   {
-    // 账户管理表，分为三个子路由，使用cardTabs渲染路由
     path: "/user",
-    name: "user",
-    // redirect: "/user/list",
+    name: "培训资料",
     meta: {
-      subtitle: "管理实验室账户基本信息",
+      subtitle: "",
     },
     component: () => import("~/components/cardGrid.vue"),
     children: [
