@@ -1,65 +1,184 @@
-<template >
-  <div class="cardGrid">
-
+<template>
+  <div class="cardGrid" :key="matchedRouterPath">
     <n-card class="gridCon" :class="{ hide }" content-style="height:100%;padding-right:10px">
-      <n-scrollbar style="padding-right: 20px; height: 100%;">
-        <n-grid cols="2 900:4 1200:5" :collapsed="false" x-gap="15" y-gap="15">
-          <n-gi v-for=" i  in  matchedRouter.children " :key="i.name" style="cursor: pointer;">
-            <n-card hoverable class="eachcard" @click="handleClickCard(i)">
+      <n-scrollbar style="padding-right: 20px; height: 100%">
+        <div style="
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: space-between;
+          ">
+          <div style="display: flex; align-items: center">
+            <n-icon size="24" style="margin-right: 15px">
+              <component :is="Stack24Regular"></component>
+            </n-icon>
+            <div style="font-size: 18px; font-weight: bold; opacity: 0.95">
+              {{ matchedRouter.name }}
+            </div>
+            <div style="font-size: 14px; margin-left: 15px; color: #aaa">
+              {{ matchedRouter.meta.subtitle }}
+            </div>
+          </div>
 
+          <div style="
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              justify-content: space-between;
+            ">
+            <n-button-group size="small">
+              <n-button @click="handleClickBackBtn">
+                机构分组
+              </n-button>
+              <n-button @click="handleClickBackBtn">
+                年号分组
+              </n-button>
+            </n-button-group>
+            <n-button-group size="small">
+              <n-button strong secondary type="primary" @click="handleClickBackBtn">
+                <n-icon size="16" class="mr-1">
+                  <component :is="Dismiss24Regular"></component>
+                </n-icon>
+                关闭
+                <!-- 这个按钮只有当存在可返回的路径时才返回 -->
+              </n-button>
+            </n-button-group>
+          </div>
+        </div>
+        <n-grid cols="2 900:4 1200:5" :collapsed="false" x-gap="15" y-gap="15">
+          <n-gi v-for="(i, index) in matchedRouter.children" :key="i.name" style="cursor: pointer">
+            <n-card hoverable class="eachcard" :class="{ current: index == 12 }" @click="handleClickCard(i)">
               <template #header>
-                <div style="padding-left: 10px;border-left: 3px solid #aaaaaa;">
+                <div>
                   <span>{{ i.name?.toString() }}</span>
-                  <div style="font-size: 14px;color: #aaa">{{ i.meta?.subtitle?.toString() || '/' }}</div>
+                  <div style="font-size: 14px; color: #aaa">
+                    {{ i.meta?.subtitle?.toString() || "/" }}
+                  </div>
                 </div>
               </template>
+
+              <template #header-extra>
+
+              </template>
               <div>
-                <div>文件数量：1125</div>
+                <div>{{ matchedRouterPath }}</div>
               </div>
             </n-card>
           </n-gi>
         </n-grid>
       </n-scrollbar>
-
     </n-card>
-
-
+    <!-- <n-tag> 爱在西元前 </n-tag> -->
+    <n-tag round class="showGirdBtn" :class="{ hide }" @click="handleClickshowGirdBtn">
+      <n-icon size="30" style="margin-left: 2px; margin-top: 2px">
+        <component :is="Stack24Regular"></component>
+      </n-icon>
+    </n-tag>
 
     <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { PersonFeedback24Regular } from '@vicons/fluent';
-import { NGi, NGrid, NCard, NScrollbar } from 'naive-ui'
-import { computed, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { Stack24Regular, Dismiss24Regular } from "@vicons/fluent";
+import {
+  NGi,
+  NGrid,
+  NCard,
+  NScrollbar,
+  NTag,
+  NIcon,
+  NButtonGroup,
+  NButton,
+  NSpin
+} from "naive-ui";
+import { computed, nextTick, ref, watch } from "vue";
+import { useRouter } from "vue-router";
 const router = useRouter();
-const matchedRouter = computed(() => router.currentRoute.value.matched[0])
-const currentRouteName = computed(() => router.currentRoute.value.name as string)
-const subtitle = computed(() => matchedRouter.value.meta.subtitle)
+const matchedRouter = computed(() => router.currentRoute.value.matched[0]);
+
+const matchedRouterPath = computed(
+  () => router.currentRoute.value.matched[0].path
+);
+
+watch(matchedRouterPath, () => {
+  console.log("大路由发生变化");
+  hide.value = false;
+});
+
 console.log(router);
-const hide = ref(false)
+const hide = ref(false);
 const handleClickCard = (i) => {
-  hide.value = !hide.value
-  router.push({ name: i.name })
+  // hide.value = !hide.value
+  router.push({ name: i.name });
   setTimeout(() => {
-    hide.value = !hide.value
-  }, 2000);
-}
+    hide.value = true;
+  }, 300);
+};
+const handleClickshowGirdBtn = () => {
+  hide.value = false;
+};
+const handleClickBackBtn = () => {
+  hide.value = true;
+};
 </script>
 
 <style lang="less" scoped>
 .eachcard {
   border: 1px solid transparent;
-  transition: all .3s var(--n-bezier) .1s;
+  transition: all 0.3s var(--n-bezier) 0.1s;
   position: relative;
   overflow: hidden;
   background-color: #aaaaaa10;
   border-color: #aaaaaa30;
 
+  &.current {
+    border-color: var(--n-color-target);
+  }
+
   &:hover {
     border-color: var(--n-color-target);
+  }
+}
+
+.showGirdBtn {
+  position: fixed;
+  right: 100px;
+  bottom: 80px;
+  z-index: 4;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.12);
+  // transition: color .5s var(--n-bezier);
+  cursor: pointer;
+  border-radius: 50px;
+
+  &:hover {
+    color: var(--n-color-checked);
+  }
+
+  &.hide {
+    transition: opacity 0.3s var(--n-bezier) 0.4s, color 0.3s var(--n-bezier);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  50% {
+    display: none;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
@@ -68,25 +187,30 @@ const handleClickCard = (i) => {
   flex-direction: column;
   position: relative;
   height: 100%;
+  animation: fadeIn .6s ease-in-out forwards;
 
+  /* 应用名为fadeIn的动画，持续1秒，渐进缓动函数，动画结束后保持最终状态 */
   .gridCon {
     position: absolute;
     width: 100%;
     height: 100%;
-    // background-color: red;
-    top: 0;
-    left: -0%;
-    // padding-right: 20px;
-    transition: all .3s var(--n-bezier);
-    opacity: 1;
+    bottom: 0;
+    right: 0;
     z-index: 5;
-    overflow: hidden;
+    transition: all 0.5s var(--n-bezier);
+
+    * {
+      opacity: 1;
+      transition: all 0.5s var(--n-bezier);
+    }
 
     &.hide {
-      left: -120%;
-      opacity: 1;
-      transition: all .5s var(--n-bezier);
+      right: -120%;
+      transition: all 0.5s var(--n-bezier);
 
+      * {
+        opacity: 0;
+      }
     }
   }
 }
