@@ -48,7 +48,7 @@
           </div>
         </div>
         <n-grid cols="2 900:4 1200:5" :collapsed="false" x-gap="15" y-gap="15">
-          <n-gi v-for="(i, index) in matchedRouter.children" style="cursor: pointer">
+          <n-gi v-for="(i, index) in matchedRouter.children.filter((r) => !r.meta?.hidden)" style="cursor: pointer">
             <n-card hoverable class="eachcard" :class="{ current: index == 12 }" @click="handleClickCard(i)">
               <template #header>
                 <div>
@@ -92,7 +92,6 @@ import {
   NIcon,
   NButtonGroup,
   NButton,
-  NSpin
 } from "naive-ui";
 import { computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -111,7 +110,9 @@ watch(matchedRouterPath, () => {
 });
 
 console.log(router);
-const hide = ref(false);
+
+const hide = ref(true);
+hide.value = route.name != matchedRouter.value.name
 const handleClickCard = (i) => {
   // hide.value = !hide.value
   router.push({ name: i.name });

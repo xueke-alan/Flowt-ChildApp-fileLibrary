@@ -1,13 +1,9 @@
 import { baseUrl } from "../../public/qiankun.config.json";
 import { createRouter, createWebHistory } from "vue-router";
 
-import userRouter from "./users";
-import standards from "./standards"
+import standards from "./standards";
 
-const routes: any[] = [
-  ...standards,
-  ...userRouter,
-];
+const routes: any[] = [...standards];
 
 const addBaseUrl = (routers) => {
   routers.forEach((r) => {

@@ -14,6 +14,14 @@ const routes = [
     component: () => import("~/components/cardGrid.vue"),
     children: [
       {
+        path: "view",
+        component: () => import("@/views/standards/view.vue"),
+        name: "standardsView",
+        meta: {
+          hidden: true,
+        },
+      },
+      {
         path: "ASTM",
         component: () => import("@/views/standards/table.vue"),
         name: "ASTM",
