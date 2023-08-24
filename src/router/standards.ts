@@ -14,18 +14,17 @@ const routes = [
     component: () => import("~/components/cardGrid.vue"),
     children: [
       {
-        path: "list",
-        component: () => import("@/views/role/tabs/list/index.vue"),
+        path: "ASTM",
+        component: () => import("@/views/standards/table.vue"),
         name: "ASTM",
         meta: {
-          icon: AppsListDetail24Regular,
-          display: "show",
           subtitle: "美国材料与试验协会",
         },
       },
       {
-        path: "roleUser",
-        component: () => import("@/views/role/tabs/roleUser.vue"),
+        path: "ISO",
+        component: () => import("@/views/standards/table.vue"),
+
         name: "ISO",
         meta: {
           icon: ChartPerson24Regular,
@@ -34,7 +33,8 @@ const routes = [
       },
       {
         path: "preandpres",
-        component: () => import("@/views/role/tabs/roleUser.vue"),
+        component: () => import("@/views/standards/table.vue"),
+
         name: "BS,DIN,EN",
         meta: {
           icon: ChartPerson24Regular,
@@ -42,8 +42,9 @@ const routes = [
         },
       },
       {
-        path: "preandpres",
-        component: () => import("@/views/role/tabs/roleUser.vue"),
+        path: "preandpres2",
+        component: () => import("@/views/standards/table.vue"),
+
         name: "GB,行标,团体",
         meta: {
           icon: ChartPerson24Regular,
@@ -51,18 +52,10 @@ const routes = [
         },
       },
       {
-        path: "preandpres",
-        component: () => import("@/views/role/tabs/roleUser.vue"),
+        path: "preandpres3",
+        component: () => import("@/views/standards/table.vue"),
+
         name: "IEC,JIS",
-        meta: {
-          icon: ChartPerson24Regular,
-          display: "show",
-        },
-      },
-      {
-        path: "preandpres",
-        component: () => import("@/views/role/tabs/roleUser.vue"),
-        name: "NF,KS,SUDI",
         meta: {
           icon: ChartPerson24Regular,
           display: "show",

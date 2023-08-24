@@ -1,5 +1,5 @@
 <template>
-  <div class="cardGrid" :key="matchedRouterPath">
+  <div class="cardGrid">
     <n-card class="gridCon" :class="{ hide }" content-style="height:100%;padding-right:10px">
       <n-scrollbar style="padding-right: 20px; height: 100%">
         <div style="
@@ -35,18 +35,20 @@
               </n-button>
             </n-button-group>
             <n-button-group size="small">
-              <n-button strong secondary type="primary" @click="handleClickBackBtn">
+              <n-button strong secondary :type="route.name == matchedRouter.name ? 'default' : 'primary'"
+                @click="handleClickBackBtn" :disabled="route.name == matchedRouter.name"
+                :style="{ opacity: route.name == matchedRouter.name ? .5 : 1 }">
                 <n-icon size="16" class="mr-1">
                   <component :is="Dismiss24Regular"></component>
                 </n-icon>
-                关闭
+                <span>关闭</span>
                 <!-- 这个按钮只有当存在可返回的路径时才返回 -->
               </n-button>
             </n-button-group>
           </div>
         </div>
         <n-grid cols="2 900:4 1200:5" :collapsed="false" x-gap="15" y-gap="15">
-          <n-gi v-for="(i, index) in matchedRouter.children" :key="i.name" style="cursor: pointer">
+          <n-gi v-for="(i, index) in matchedRouter.children" style="cursor: pointer">
             <n-card hoverable class="eachcard" :class="{ current: index == 12 }" @click="handleClickCard(i)">
               <template #header>
                 <div>
@@ -92,8 +94,9 @@ import {
   NButton,
   NSpin
 } from "naive-ui";
-import { computed, nextTick, ref, watch } from "vue";
-import { useRouter } from "vue-router";
+import { computed, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
 const router = useRouter();
 const matchedRouter = computed(() => router.currentRoute.value.matched[0]);
 
@@ -103,6 +106,7 @@ const matchedRouterPath = computed(
 
 watch(matchedRouterPath, () => {
   console.log("大路由发生变化");
+  // 应该是判断路由是否变化为耳机
   hide.value = false;
 });
 
@@ -117,6 +121,9 @@ const handleClickCard = (i) => {
 };
 const handleClickshowGirdBtn = () => {
   hide.value = false;
+  // setTimeout(() => {
+  //   router.push({name:"标准库"})
+  // }, 600);
 };
 const handleClickBackBtn = () => {
   hide.value = true;
