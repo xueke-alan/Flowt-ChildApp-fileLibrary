@@ -3,6 +3,7 @@ import {
   AppsListDetail24Regular,
   ChartPerson24Regular,
 } from "@vicons/fluent";
+import ASTMBackground from "@/img/astm.vue";
 
 const routes = [
   {
@@ -27,6 +28,7 @@ const routes = [
         name: "ASTM",
         meta: {
           subtitle: "美国材料与试验协会",
+          background: ASTMBackground,
         },
       },
       {
@@ -37,6 +39,8 @@ const routes = [
         meta: {
           icon: ChartPerson24Regular,
           display: "show",
+          background: ASTMBackground,
+
         },
       },
       {

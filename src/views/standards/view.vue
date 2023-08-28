@@ -6,7 +6,7 @@
 
       <template #header>
         <div style="display: flex;align-items: center;">
-          <span style="font-weight: bold">ASTM D149-20</span>
+          <span style="font-weight: bold;font-size: 20px;">ASTM D149-20</span>
         </div>
       </template>
 
