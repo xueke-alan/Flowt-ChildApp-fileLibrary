@@ -4,18 +4,7 @@
       <n-button ghost size="small">
         过期标准
       </n-button>
-      <n-button ghost size="small">
-        外包员工
-      </n-button>
-      <n-button size="small">
-        实习生
-      </n-button>
-      <n-button size="small">
-        准入职
-      </n-button>
-      <n-button size="small">
-        已离职
-      </n-button>
+      
     </n-button-group>
 
     <div style="display: flex;">

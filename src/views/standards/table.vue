@@ -34,28 +34,30 @@ const columns = [
   {
     title: "标准编号",
     key: "no",
-    width: 200,
   },
   {
     title: "标准名称",
     key: "title",
-    width: 400,
   },
   {
     title: "生效日期",
     key: "eff",
+    width: 100,
   },
   {
     title: "登记时间",
     key: "update",
+    width: 100,
   },
   {
     title: "文件",
     key: "file",
+    width: 100,
   },
   {
     title: "访问量",
     key: "stastic",
+    width: 100,
   },
 ];
 const rowProps = (row) => {
@@ -75,7 +77,7 @@ const data = [
     eff: "1/6/2010",
     update: "15/1/2016",
     file: "电子版",
-    stastic: "12021/455124",
+    stastic: "12K/45K",
   },
 ];
 </script>
