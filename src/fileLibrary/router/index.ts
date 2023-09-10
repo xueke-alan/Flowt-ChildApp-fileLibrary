@@ -1,4 +1,4 @@
-import { baseUrl } from "../../public/qiankun.config.json";
+import { baseUrl } from "../../../public/qiankun.config.json";
 import { createRouter, createWebHistory } from "vue-router";
 
 import standards from "./standards";

@@ -16,6 +16,8 @@ export function useQiankunGlobalState(
   // 订阅designStore以切换主题
   const unsubscribeDesignStore = designStore.$subscribe(
     (newState, oldState) => {
+      console.log(newState);
+      
       globalStore.darkTheme = oldState.darkTheme;
     }
   );

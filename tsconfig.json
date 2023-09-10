@@ -28,7 +28,7 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": [
-        "src/*"
+        "src/account/*"
       ],
       "~/*": [
         "template/*"
@@ -56,11 +56,13 @@
     "build/**/*.d.ts",
     "mock/**/*.ts",
     "components.d.ts",
-    "vite.config.ts"
-, "src/router/index.ts"  ],
+    "vite.config.ts",
+    "src/router/index.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.js"
-  ]
+  ],
+  "microAppName": "account"
 }

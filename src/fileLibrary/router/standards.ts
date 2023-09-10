@@ -1,6 +1,5 @@
 import {
-  Branch24Regular,
-  AppsListDetail24Regular,
+
   ChartPerson24Regular,
 } from "@vicons/fluent";
 import ASTMBackground from "@/img/astm.vue";
