@@ -1,20 +1,10 @@
-// import { baseUrl } from "../../../public/qiankun.config.json";
-import { createRouter, createWebHistory } from "vue-router";
 const baseUrl = "account";
-import permission from "@/views/permission/permission.vue";
+import { createRouter, createWebHistory } from "vue-router";
+
 import userRouter from "./users";
 import rolesRouter from "./roles";
 
-const routes: any[] = [
-  ...userRouter,
-  ...rolesRouter,
-
-  {
-    path: "/permission",
-    name: "permission",
-    component: permission,
-  },
-];
+const routes: any[] = [...userRouter, ...rolesRouter];
 
 const addBaseUrl = (routers) => {
   routers.forEach((r) => {

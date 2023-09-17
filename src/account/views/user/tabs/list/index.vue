@@ -19,7 +19,7 @@
     </n-button-group>
 
     <div style="display: flex;">
-      <n-input v-model:value="value" size="small" type="text" placeholder="工号/姓名/分机/分组"
+      <n-input v-model:value="value" round  size="small" type="text" placeholder="工号/姓名/分机/分组"
         style="margin-right: 10px;width: 250px;" />
       <n-button ghost size="small" style="margin-right: 10px;" @click="getUserList">
         刷新

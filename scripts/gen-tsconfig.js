@@ -1,6 +1,7 @@
-import { writeFileSync, readdirSync } from "fs";
+import { writeFileSync, readdirSync, readFileSync } from "fs";
 import readline from "readline";
 import chalk from "chalk";
+import importTS from "./import-ts.js";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -13,35 +14,42 @@ const validOptions = simplifyList(microAppList);
 const echoString = generteEchoString(validOptions);
 console.log(echoString);
 
-main();
+chooseMicroAppName();
 
-function main() {
+function chooseMicroAppName() {
   // 生成提示消息字符串
 
-  rl.question(chalk(" >>> ") + " ", (answer) => {
+  rl.question(" >>> " + " ", (answer) => {
     let microAppName = findMatchingKey(validOptions, answer.trim());
     if (microAppName) {
       rl.close();
+
+      generte(microAppName);
       console.log(
         chalk.green(" Received microAppName: ") +
           ` ${microAppName}\n\n` +
-          chalk.blue("> start to build\n ")
+          chalk.blue("> wait for next step.\n ")
       );
-      generteTsconfig(microAppName);
     } else {
       console.log(
+        // 删除上面两行
         chalk.red(" Invalid input. ") +
           " Please choose from the provided options."
       );
-      main();
+      chooseMicroAppName();
     }
   });
+}
+
+function generte(microAppName) {
+  generteTsconfig(microAppName);
+  generteQiankunConfig(microAppName);
 }
 
 function generteTsconfig(microAppName) {
   const tsconfig = {
     compilerOptions: {
-      target: "es5",
+      target: "es2020",
       module: "commonjs",
       moduleResolution: "node",
       strict: true,
@@ -73,10 +81,10 @@ function generteTsconfig(microAppName) {
       "template/**/*.d.ts",
       "template/**/*.tsx",
       "template/**/*.vue",
-      "src/**/*.ts",
-      "src/**/*.d.ts",
-      "src/**/*.tsx",
-      "src/**/*.vue",
+      `src/${microAppName}/**/*.ts`,
+      `src/${microAppName}/**/*.d.ts`,
+      `src/${microAppName}/**/*.tsx`,
+      `src/${microAppName}/**/*.vue`,
       "types/**/*.d.ts",
       "types/**/*.ts",
       "build/**/*.ts",
@@ -84,13 +92,31 @@ function generteTsconfig(microAppName) {
       "mock/**/*.ts",
       "components.d.ts",
       "vite.config.ts",
-      "src/router/index.ts",
     ],
     exclude: ["node_modules", "dist", "**/*.js"],
     microAppName,
   };
 
   writeFileSync("tsconfig.json", JSON.stringify(tsconfig, null, 2));
+}
+
+function generteQiankunConfig(microAppName) {
+  // 使用fs.readFile异步方法来读取JSON文件
+  const jsonFilePath = `./src/${microAppName}/public/qiankun.config.json`;
+  const outPath = "./public/qiankun.config.json";
+  try {
+    const fileContent = readFileSync(jsonFilePath, "utf-8");
+    const jsonObject = {
+      name: `flowt_micro_${microAppName}`,
+      baseUrl: microAppName,
+      ...JSON.parse(fileContent),
+    };
+    // 写入新的JSON文件
+    writeFileSync(outPath, JSON.stringify(jsonObject, null, 2));
+  } catch (err) {
+    // 处理读取和解析错误
+    console.error(err);
+  }
 }
 
 function getSubdirectories(srcFolder) {
@@ -125,7 +151,6 @@ function simplifyList(inputList) {
       shortName: shortName,
     });
   }
-
   return simplifiedList;
 }
 

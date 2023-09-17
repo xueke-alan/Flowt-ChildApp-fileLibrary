@@ -1,8 +1,11 @@
 import axios from "axios";
+// import { getAppEnvConfig } from "~/utils/env";
+// const { VITE_GLOB_API_URL } = process.env.VITE_GLOB_API_URL;
+// const VITE_GLOB_API_URL = "https://api.flowt.work";
 
 // 创建 Axios 实例
 const http = axios.create({
-  baseURL: "http://127.0.0.1:3000", // 设置默认的 baseURL
+  baseURL: import.meta.env.VITE_GLOB_API_URL, // 设置默认的 baseURL
   timeout: 10000, // 请求超时时间，单位为毫秒
   headers: {
     "Content-Type": "application/json", // 设置默认的请求头

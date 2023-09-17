@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "module": "commonjs",
     "moduleResolution": "node",
     "strict": true,
@@ -28,7 +28,7 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": [
-        "src/account/*"
+        "src/quoto/*"
       ],
       "~/*": [
         "template/*"
@@ -46,23 +46,22 @@
     "template/**/*.d.ts",
     "template/**/*.tsx",
     "template/**/*.vue",
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
+    "src/quoto/**/*.ts",
+    "src/quoto/**/*.d.ts",
+    "src/quoto/**/*.tsx",
+    "src/quoto/**/*.vue",
     "types/**/*.d.ts",
     "types/**/*.ts",
     "build/**/*.ts",
     "build/**/*.d.ts",
     "mock/**/*.ts",
     "components.d.ts",
-    "vite.config.ts",
-    "src/router/index.ts"
+    "vite.config.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.js"
   ],
-  "microAppName": "account"
+  "microAppName": "quoto"
 }

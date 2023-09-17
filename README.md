@@ -12,3 +12,9 @@
 业务内容集中在页面（views），状态管理（store），路由管理（router），局部 api（ownApi），资源 asset，
 
 最佳实践最好是所有业务内容全部写在 src/microapp 文件下。
+
+如何实现启动某一个项目的时候，将这个项目设置为开发模式？
+在web项目中，读取到已部署的qiankunconfiglist后，更改已经打开的项目的项目的entry地址，
+
+如何在web中读取到当前打开的项目？
+

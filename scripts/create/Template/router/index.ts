@@ -1,9 +1,9 @@
-const baseUrl = "fileLibrary";
+const baseUrl = "account";
 import { createRouter, createWebHistory } from "vue-router";
 
-import standards from "./standards";
+import helloRouter from "./hello";
 
-const routes: any[] = [...standards];
+const routes: any[] = [...helloRouter];
 
 const addBaseUrl = (routers) => {
   routers.forEach((r) => {
@@ -16,8 +16,6 @@ const addBaseUrl = (routers) => {
 };
 
 addBaseUrl(routes);
-
-// 这一部分可以抽离出来
 
 export const router = createRouter({
   history: createWebHistory(

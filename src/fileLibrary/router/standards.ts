@@ -1,7 +1,4 @@
-import {
-
-  ChartPerson24Regular,
-} from "@vicons/fluent";
+import { ChartPerson24Regular } from "@vicons/fluent";
 import ASTMBackground from "@/img/astm.vue";
 
 const routes = [
@@ -39,7 +36,6 @@ const routes = [
           icon: ChartPerson24Regular,
           display: "show",
           background: ASTMBackground,
-
         },
       },
       {
