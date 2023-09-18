@@ -1,7 +1,5 @@
 <template>
-  <div
-    style="display: flex; justify-content: space-between; margin-bottom: 8px"
-  >
+  <div style="" class="quoto">
     <div style="display: flex; gap: 5px">
       <n-button-group>
         <n-button ghost size="small"> 物理性能 </n-button>
@@ -20,8 +18,8 @@
       <n-dropdown size="small" trigger="click" :options="moreQueryOptions">
         <n-button size="small">
           更多类别
-          <n-icon size="15" style="margin-left: 5px; color: #aaa">
-            <component :is="ArrowDownload16Filled"></component>
+          <n-icon size="20" style="margin-left: 5px; color: #aaa">
+            <component :is="AddSquareMultiple20Regular"></component>
           </n-icon>
         </n-button>
       </n-dropdown>
@@ -43,10 +41,26 @@
       </n-button-group>
     </div>
   </div>
+
+  <n-drawer
+    v-model:show="active"
+    width="60%"
+    :height="200"
+    :trap-focus="false"
+    :block-scroll="false"
+    to=".quotoListDrawerTarget .n-data-table-base-table-body"
+    show-mask="transparent"
+  >
+    <n-drawer-content title="详细信息">
+      在这里查看或者编辑每一行的详细信息
+    </n-drawer-content>
+  </n-drawer>
+
   <n-spin :show="tableLoading" style="height: 100%">
     <n-data-table
       ref="myTable"
-      class="datatable"
+      class="datatable quotoListDrawerTarget"
+      :class="{ blurTable: active }"
       striped
       :columns="(columns as TableColumns<any>)"
       :data="[...data]"
@@ -56,7 +70,7 @@
       :row-props="rowProps"
       :max-height="tableMaxHeight"
       :min-height="data.length > 0 ? '' : tableMaxHeight"
-      :scroll-x="2400"
+      :render-cell="renderCell"
     >
       <template #empty><br /></template>
     </n-data-table>
@@ -72,13 +86,24 @@ import {
   NSpin,
   NDropdown,
   NIcon,
+  NDrawer,
+  NDrawerContent,
 } from "naive-ui";
-import { onMounted, reactive, ref, watch, toRef, onUnmounted, h } from "vue";
+import {
+  onMounted,
+  reactive,
+  ref,
+  watch,
+  toRef,
+  onUnmounted,
+  h,
+  createVNode,
+} from "vue";
 import { useRouter } from "vue-router";
 import type { Component } from "vue";
 import type { DataTableColumns } from "naive-ui";
 import {
-  ArrowDownload16Filled,
+  AddSquareMultiple20Regular,
   Beaker24Regular,
   CaretRight24Regular,
 } from "@vicons/fluent";
@@ -96,6 +121,8 @@ const paginationReactive = reactive({
     paginationReactive.page = 1;
   },
 });
+
+const active = ref(false);
 const renderIcon = (icon: Component) => {
   return () => {
     return h(
@@ -186,93 +213,253 @@ watch(
   }
 );
 
+const renderCell = (value: string | number) => {
+  return createVNode("div", {
+    innerHTML: value,
+  });
+};
+
+const clickedRowId = ref()
+
 const rowProps = (row: any) => {
+  
   return {
     style: "cursor: pointer;",
-    // onClick: () => {
-    //   router.push({
-    //     path: "info",
-    //     query: { staffId: row.staffId },
-    //   });
-    // },
+    class: { blurRow: active.value && row.id != clickedRowId.value },
+    onClick: () => {
+      active.value = true;
+      clickedRowId.value = row.id
+    },
   };
 };
 
 const columns = ref<any[]>([
   {
     title: "测试项目",
-    key: "staffId",
+    key: "测试项目",
+    width: "150",
+    fixed: "left",
+  },
+
+  {
+    title: "测试标准",
+    key: "测试标准",
     width: "200",
     fixed: "left",
   },
   {
     title: "测试参数",
-    key: "username",
+    key: "测试参数",
     width: "200",
-    fixed: "left",
   },
   {
-    title: "测试标准",
-    key: "usernameCn",
-    width: "200",
-    fixed: "left",
-  },
-  {
-    title: "价格(￥)",
-    key: "gender",
+    title: "价格",
+    key: "价格",
     width: "200",
   },
   {
     title: "TAT",
-    key: "email",
+    key: "TAT",
     width: "200",
   },
   {
     title: "样品要求",
-    key: "mobile",
+    key: "样品要求",
     width: "200",
   },
   {
     title: "能力范围",
+    key: "能力范围",
     width: "200",
-    key: "shortDir",
   },
   {
     title: "必须确认参数条件",
+    key: "必须确认参数条件",
     width: "200",
-    key: "group",
   },
   {
     title: "备注",
-    width: "200",
     key: "备注",
+    width: "200",
   },
   {
     title: "实验室能力",
-    width: "200",
     key: "实验室能力",
+    width: "200",
   },
   {
     title: "CNAS",
-    width: "200",
     key: "CNAS",
+    width: "200",
   },
   {
     title: "CMA",
-    width: "200",
     key: "CMA",
+    width: "200",
   },
 ]);
 
 const data = ref<any[]>([
   {
-    staffId: "200",
-    username: "200",
-    usernameCn: 1,
-    gender: 1,
-    mobile: 1,
-    hortDir: 1,
-    group: 1,
+    id: 1,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 2,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 3,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 4,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 5,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 6,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 7,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 8,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 9,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 10,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
+    备注: 1,
+    实验室能力: 1,
+    CNAS: 1,
+    CMA: 1,
+  },
+  {
+    id: 11,
+    测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",
+    测试参数: "硬度值<br> Hardness value",
+    测试标准: "ASTM D2240-15ε1<br> 用硬度计测定橡胶硬度的试验方法",
+    价格: 5,
+    TAT: 1,
+    样品要求: 1,
+    能力范围: 1,
+    必须确认参数条件: 1,
     备注: 1,
     实验室能力: 1,
     CNAS: 1,
@@ -308,14 +495,41 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="less">
+.quoto {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+
+  .datatable {
+    opacity: 1;
+    transition: height 0.6s var(--n-bezier), opacity 1s var(--n-bezier);
+
+    &.blurTable {
+      .n-scrollbar-container {
+        // filter: blur(5px);
+      }
+    }
+
+    // &.tablehide {
+    //   opacity: 0;
+    //   display: none;
+
+    // }
+  }
+}
+</style>
+
+<style lang="less">
 .datatable {
-  opacity: 1;
-  transition: height 0.6s var(--n-bezier), opacity 1s var(--n-bezier);
-
-  // &.tablehide {
-  //   opacity: 0;
-  //   display: none;
-
+  .n-scrollbar-container .blurRow .n-data-table-td {
+    filter: blur(2px);
+    transition: all 0.1s ease;
+  }
+  // &.blurTable {
+  //   .n-scrollbar-container {
+  //     filter: blur(2px);
+  //     transition: all 0.3s ease;
+  //   }
   // }
 }
 </style>
