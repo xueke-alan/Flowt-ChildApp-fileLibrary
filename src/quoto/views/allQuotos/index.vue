@@ -24,7 +24,7 @@
         </n-button>
       </n-dropdown>
     </div>
-
+    <!-- TODO 文件拆分 -->
     <div style="display: flex">
       <n-input
         v-model:value="value"
@@ -53,6 +53,8 @@
   >
     <n-drawer-content title="详细信息">
       在这里查看或者编辑每一行的详细信息
+      <div>表单模式</div>
+      <div>如果是录入信息的话，宽度为100%</div>
     </n-drawer-content>
   </n-drawer>
 
