@@ -1,6 +1,6 @@
 {
-  "name": "flowt_micro_quoto",
-  "baseUrl": "quoto",
+  "name": "flowt_micro_quote",
+  "baseUrl": "quote",
   "title": "报价单",
   "iconName": "ReceiptMoney24Regular",
   "children": [

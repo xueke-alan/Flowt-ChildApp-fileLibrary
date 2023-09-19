@@ -28,7 +28,7 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": [
-        "src/quoto/*"
+        "src/quote/*"
       ],
       "~/*": [
         "template/*"
@@ -46,10 +46,10 @@
     "template/**/*.d.ts",
     "template/**/*.tsx",
     "template/**/*.vue",
-    "src/quoto/**/*.ts",
-    "src/quoto/**/*.d.ts",
-    "src/quoto/**/*.tsx",
-    "src/quoto/**/*.vue",
+    "src/quote/**/*.ts",
+    "src/quote/**/*.d.ts",
+    "src/quote/**/*.tsx",
+    "src/quote/**/*.vue",
     "types/**/*.d.ts",
     "types/**/*.ts",
     "build/**/*.ts",
@@ -63,5 +63,5 @@
     "dist",
     "**/*.js"
   ],
-  "microAppName": "quoto"
+  "microAppName": "quote"
 }

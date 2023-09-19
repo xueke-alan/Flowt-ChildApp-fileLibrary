@@ -5,7 +5,7 @@ import archiver from "archiver";
 import chalk from "chalk";
 export default function zipDist(microAppName) {
   return {
-    name: "hello-vite-plugin",
+    name: "quote-vite-plugin",
     // 在构建结束后，执行你的操作
     async closeBundle() {
       if (process.env.NODE_ENV === "production") {

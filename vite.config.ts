@@ -40,7 +40,7 @@ export default defineConfig({
     //     target: 'http://localhost:5173', // 需要代理的地址
     //     changeOrigin: true,
     //     secure: true, // 如果是https接口，需要配置这个参数
-    //     rewrite: (path) => path.replace(/^\/proxy/, 'quoto'),
+    //     rewrite: (path) => path.replace(/^\/proxy/, 'quote'),
     //     configure: (proxy) => {
     //       proxy.on('proxyReq', (proxyReq, req, res) => {
     //         // req是当前真实请求的地址 开发环境为：a.shop.com:8082

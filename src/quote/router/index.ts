@@ -1,9 +1,9 @@
-const baseUrl = "quoto";
+const baseUrl = "quote";
 import { createRouter, createWebHistory } from "vue-router";
 
-import helloRouter from "./hello";
+import quoteRouter from "./quote";
 
-const routes: any[] = [...helloRouter];
+const routes: any[] = [...quoteRouter];
 
 const addBaseUrl = (routers) => {
   routers.forEach((r) => {

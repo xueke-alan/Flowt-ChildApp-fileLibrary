@@ -9,9 +9,9 @@ interface dataType {
 /**
  * @description: query查询搜索结果
  */
-export function searchQuotoByQuery(query: string): Promise<dataType[]> {
+export function searchquoteByQuery(query: string): Promise<dataType[]> {
   return http.request({
-    url: `/quoto?q=${query}`,
+    url: `/quote?q=${query}`,
     method: "get",
   });
 }

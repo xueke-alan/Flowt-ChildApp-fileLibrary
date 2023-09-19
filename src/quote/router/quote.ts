@@ -1,8 +1,4 @@
-import {
-  Branch24Regular,
-  AppsListDetail24Regular,
-  ChartPerson24Regular,
-} from "@vicons/fluent";
+import { AppsListDetail24Regular } from "@vicons/fluent";
 
 const routes = [
   {
@@ -19,7 +15,7 @@ const routes = [
       {
         path: "tab-one",
         // 父路由的component可以是从模板格式中选择
-        component: () => import("@/views/hello/hello.vue"),
+        component: () => import("@/views/search/index.vue"),
         name: "搜索报价单",
         meta: {
           // 一些meta信息
@@ -30,7 +26,7 @@ const routes = [
       {
         path: "tab-two",
         // 父路由的component可以是从模板格式中选择
-        component: () => import("@/views/allQuotos/index.vue"),
+        component: () => import("@/views/query/index.vue"),
         name: "全部报价单",
         meta: {
           // 一些meta信息
@@ -41,7 +37,7 @@ const routes = [
       {
         path: "tab-fore",
         // 父路由的component可以是从模板格式中选择
-        component: () => import("@/views/hello/hello.vue"),
+        component: () => import("@/views/search/index.vue"),
         name: "报价说明",
         meta: {
           // 一些meta信息
@@ -52,7 +48,7 @@ const routes = [
       {
         path: "tab-three",
         // 父路由的component可以是从模板格式中选择
-        component: () => import("@/views/hello/hello.vue"),
+        component: () => import("@/views/search/index.vue"),
         name: "查询统计",
         meta: {
           // 一些meta信息

@@ -1,8 +1,8 @@
 <template>
   <div class="mainSearch">
     <div class="searchConter">
-      <div class="title">
-        <n-icon size="150">
+      <div class="titleandicon">
+        <n-icon size="120">
           <svg
             viewBox="0 0 100 47"
             fill="none"
@@ -21,7 +21,10 @@
             <path d="M86.664 0h.78v46.654h-.78V0z" fill="#F60"></path>
           </svg>
         </n-icon>
-        <span>MR 报价系统</span>
+        <span class="title">
+          <span>MR-Lab</span>
+          <span class="right">报价系统</span>
+        </span>
       </div>
 
       <n-input
@@ -191,7 +194,7 @@ import {
   NSelect,
   NPopselect,
 } from "naive-ui";
-import { searchQuotoByQuery } from "@/api/quoto";
+import { searchquoteByQuery } from "@/api/quote";
 import {
   BookmarkSearch24Regular,
   Search48Filled,
@@ -214,7 +217,7 @@ const handleInput = debounce(async (v: string) => {
   console.log(v);
   searchLoading.value = true;
   if (v) {
-    const queryList: any[] = await searchQuotoByQuery(v);
+    const queryList: any[] = await searchquoteByQuery(v);
     console.log(queryList);
     if (inputValue.value) {
       searchTipsOption.value = queryList;
@@ -282,14 +285,35 @@ const searchPush = () => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .title {
+    .titleandicon {
+      display: flex;
+      flex-direction: column;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
-      gap: 30px;
-      font-size: 36px;
-      font-weight: bold;
-      color: #848484;
+      // gap: 30px;
+      font-size: 48px;
+
+      line-height: 1.45;
+      font-weight: 900;
+      // color: #848484;
+      font-family: Quotes, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, "Microsoft Yahei", Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+user-select: none;
+      .title {
+        background: -webkit-linear-gradient(315deg, #8b8b8b 25%, #777777);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .right {
+          font-size: 40px;
+         
+        }
+      }
     }
   }
 }

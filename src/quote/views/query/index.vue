@@ -1,68 +1,13 @@
 <template>
-  <div style="" class="quoto">
-    <div style="display: flex; gap: 5px">
-      <n-button-group>
-        <n-button ghost size="small"> 物理性能 </n-button>
-        <n-button ghost size="small"> 材料耐老侯 </n-button>
-        <n-button size="small"> 环境可靠性 </n-button>
-        <n-button size="small"> 机械可靠性 </n-button>
-        <n-button size="small"> 热分析 </n-button>
-        <n-button size="small"> 成分分析 </n-button>
-        <!-- <n-button size="small"> 燃烧 </n-button>
-        <n-button size="small"> 电学 </n-button>
-        <n-button size="small"> 复合材料 </n-button>
-        <n-button size="small"> 生物降解 </n-button>
-        <n-button size="small"> 涂料 </n-button>
-        <n-button size="small"> 胶带 </n-button> -->
-      </n-button-group>
-      <n-dropdown size="small" trigger="click" :options="moreQueryOptions">
-        <n-button size="small">
-          更多类别
-          <n-icon size="20" style="margin-left: 5px; color: #aaa">
-            <component :is="AddSquareMultiple20Regular"></component>
-          </n-icon>
-        </n-button>
-      </n-dropdown>
-    </div>
-    <!-- TODO 文件拆分 -->
-    <div style="display: flex">
-      <n-input
-        v-model:value="value"
-        round
-        size="small"
-        type="text"
-        placeholder="输入即搜索"
-        style="margin-right: 10px; width: 250px"
-      />
-      <n-button ghost size="small" style="margin-right: 10px"> 刷新 </n-button>
+  <header-bar />
 
-      <n-button-group>
-        <n-button ghost size="small"> 录入 </n-button>
-      </n-button-group>
-    </div>
-  </div>
-
-  <n-drawer
-    v-model:show="active"
-    width="60%"
-    :height="200"
-    :trap-focus="false"
-    :block-scroll="false"
-    to=".quotoListDrawerTarget .n-data-table-base-table-body"
-    show-mask="transparent"
-  >
-    <n-drawer-content title="详细信息">
-      在这里查看或者编辑每一行的详细信息
-      <div>表单模式</div>
-      <div>如果是录入信息的话，宽度为100%</div>
-    </n-drawer-content>
-  </n-drawer>
+  <drawer-box />
 
   <n-spin :show="tableLoading" style="height: 100%">
     <n-data-table
       ref="myTable"
-      class="datatable quotoListDrawerTarget"
-      :class="{ blurTable: active }"
+      class="datatable quoteListDrawerTarget"
+      :class="{ blurTable: drawerStore.active }"
       striped
       :columns="(columns as TableColumns<any>)"
       :data="[...data]"
@@ -81,35 +26,20 @@
 
 <script lang="ts" setup>
 import {
-  NDataTable,
-  NButtonGroup,
-  NButton,
-  NInput,
-  NSpin,
-  NDropdown,
-  NIcon,
-  NDrawer,
-  NDrawerContent,
-} from "naive-ui";
-import {
   onMounted,
   reactive,
   ref,
   watch,
   toRef,
   onUnmounted,
-  h,
   createVNode,
 } from "vue";
-import { useRouter } from "vue-router";
-import type { Component } from "vue";
-import type { DataTableColumns } from "naive-ui";
-import {
-  AddSquareMultiple20Regular,
-  Beaker24Regular,
-  CaretRight24Regular,
-} from "@vicons/fluent";
+import { NDataTable, NSpin } from "naive-ui";
 import { TableColumns } from "naive-ui/es/data-table/src/interface";
+import drawerBox from "./drawer-box.vue";
+import headerBar from "./header-bar.vue";
+import { store as drawerStore } from "@/store/drawer";
+
 const paginationReactive = reactive({
   page: 1,
   pageSize: 15,
@@ -124,78 +54,9 @@ const paginationReactive = reactive({
   },
 });
 
-const active = ref(false);
-const renderIcon = (icon: Component) => {
-  return () => {
-    return h(
-      NIcon,
-      { size: "18" },
-      {
-        default: () => h(icon),
-      }
-    );
-  };
-};
-const moreQueryOptions = ref([
-  {
-    label: "燃烧",
-    key: "燃烧",
-    icon: renderIcon(Beaker24Regular),
-  },
-  {
-    label: "电学",
-    key: "电学",
-    icon: renderIcon(Beaker24Regular),
-  },
-  {
-    label: "复合材料",
-    key: "复合材料",
-    icon: renderIcon(Beaker24Regular),
-  },
-  {
-    label: "生物降解",
-    key: "生物降解",
-    icon: renderIcon(Beaker24Regular),
-  },
-  {
-    label: "涂料",
-    key: "涂料",
-    icon: renderIcon(Beaker24Regular),
-  },
-  {
-    label: "胶带",
-    key: "胶带",
-    icon: renderIcon(Beaker24Regular),
-  },
-  {
-    type: "divider",
-    key: "d1",
-  },
-  {
-    label: "其他类别",
-    key: "others1",
-    icon: renderIcon(CaretRight24Regular),
-    children: [
-      {
-        label: "迪卡侬",
-        key: "迪卡侬",
-        icon: renderIcon(Beaker24Regular),
-      },
-      {
-        label: "高分子技术服务",
-        key: "高分子技术服务",
-        icon: renderIcon(Beaker24Regular),
-      },
-    ],
-  },
-]);
-const router = useRouter();
-
 // 监听主题变化，卸载大Dom数量组件
 import { useGlobalSetting } from "~/stores/global";
 const globalStore = useGlobalSetting();
-
-console.log(globalStore.darkTheme);
 
 const tableLoading = ref(true);
 const tableMaxHeight = ref("0");
@@ -226,9 +87,9 @@ const clickedRowId = ref();
 const rowProps = (row: any) => {
   return {
     style: "cursor: pointer;",
-    class: { blurRow: active.value && row.id != clickedRowId.value },
+    class: { blurRow: drawerStore.active && row.id != clickedRowId.value },
     onClick: () => {
-      active.value = true;
+      drawerStore.active = true;
       clickedRowId.value = row.id;
     },
   };
@@ -467,7 +328,6 @@ const data = ref<any[]>([
     CMA: 1,
   },
 ]);
-const value = ref("");
 
 const myTable = ref();
 
@@ -496,7 +356,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="less">
-.quoto {
+.quote {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
