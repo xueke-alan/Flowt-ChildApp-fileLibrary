@@ -269,7 +269,8 @@ const searchPush = () => {
 
 <style lang="less" scoped>
 .mainSearch {
-  height: 70%;
+  // height: 100%;
+  padding-top: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

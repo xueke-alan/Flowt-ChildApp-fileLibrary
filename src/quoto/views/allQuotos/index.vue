@@ -219,16 +219,15 @@ const renderCell = (value: string | number) => {
   });
 };
 
-const clickedRowId = ref()
+const clickedRowId = ref();
 
 const rowProps = (row: any) => {
-  
   return {
     style: "cursor: pointer;",
     class: { blurRow: active.value && row.id != clickedRowId.value },
     onClick: () => {
       active.value = true;
-      clickedRowId.value = row.id
+      clickedRowId.value = row.id;
     },
   };
 };
@@ -503,33 +502,33 @@ onUnmounted(() => {
   .datatable {
     opacity: 1;
     transition: height 0.6s var(--n-bezier), opacity 1s var(--n-bezier);
-
-    &.blurTable {
-      .n-scrollbar-container {
-        // filter: blur(5px);
-      }
-    }
-
-    // &.tablehide {
-    //   opacity: 0;
-    //   display: none;
-
-    // }
   }
 }
 </style>
 
 <style lang="less">
 .datatable {
-  .n-scrollbar-container .blurRow .n-data-table-td {
-    filter: blur(2px);
-    transition: all 0.1s ease;
+  .n-scrollbar-container .blurRow .n-data-table-td > div {
+    filter: blur(4px);
+    opacity: 0.6;
   }
-  // &.blurTable {
-  //   .n-scrollbar-container {
-  //     filter: blur(2px);
-  //     transition: all 0.3s ease;
-  //   }
-  // }
+
+  .n-scrollbar-container .n-data-table-td > div {
+    filter: blur(0px);
+    opacity: 1;
+    transition: all 0.2s ease;
+  }
+  .n-data-table-th__title {
+    filter: blur(0px);
+    opacity: 1;
+    transition: all 0.2s ease;
+  }
+  &.blurTable {
+    .n-data-table-th__title {
+      filter: blur(4px);
+      opacity: 0.6;
+      transition: all 0.2s ease;
+    }
+  }
 }
 </style>
