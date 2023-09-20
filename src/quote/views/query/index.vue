@@ -19,4 +19,5 @@ import dataTable from "./data-table.vue";
   flex: 1;
   overflow: hidden;
 }
+
 </style>

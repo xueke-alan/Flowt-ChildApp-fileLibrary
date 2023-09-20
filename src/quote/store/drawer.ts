@@ -8,9 +8,41 @@ export const useChildQuoteStore = defineStore({
   state: (): any => ({
     title: "报价单详情",
     active: false,
+    width: "60%",
+    to: ".quoteListDrawerTarget .n-data-table-base-table-body",
   }),
-  getters: {},
-  actions: {},
+  getters: {
+    state(s) {
+      if (s.active && s.width == "100%") {
+        return "openNew";
+      } else if (s.active && s.width == "60%") {
+        return "openView";
+      } else {
+        return "close";
+      }
+    },
+  },
+  actions: {
+    fullShow() {
+      const set = () => {
+        this.width = "100%";
+        this.title = "创建报价单";
+        this.active = true;
+        this.to = ".quoteListDrawerTarget .n-data-table-base-table";
+      };
+      if (this.active) {
+        this.active = false;
+        setTimeout(() => {
+          set();
+        }, 400);
+      } else {
+        set();
+      }
+    },
+    reset() {
+      this.$reset();
+    },
+  },
 });
 
 // 在setup外部使用时调用

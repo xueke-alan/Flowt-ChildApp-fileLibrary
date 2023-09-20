@@ -74,14 +74,7 @@
         </div>
 
         <div class="tagGroup" v-if="!searchTipsOption.length">
-          <n-tag
-            class="tag"
-            v-for="i in 6"
-            round
-            :bordered="false"
-            
-            closable
-          >
+          <n-tag class="tag" v-for="i in 6" round :bordered="false" closable>
             <template #icon>
               <n-icon>
                 <component :is="ErrorCircle24Regular"></component>
@@ -90,7 +83,7 @@
             气候老化类 {{ i }}
           </n-tag>
 
-          <n-tag class="tag" round :bordered="false"  closable>
+          <n-tag class="tag" round :bordered="false" closable>
             测试咨询统计表
           </n-tag>
 
@@ -176,6 +169,7 @@
         </n-list>
       </div>
     </div>
+    <div class="footer">SGS GZMR Quote System 已累计提供20,345次搜索 .</div>
   </div>
 </template>
 
@@ -264,7 +258,7 @@ const handleKeyDown = (k) => {
 const searchPush = () => {
   console.log("beforePush");
   if (inputValue.value) {
-    router.push({ name: "全部报价单" });
+    router.push({ name: "报价单" });
   } else {
     inputStatus.value = "error";
   }
@@ -274,7 +268,7 @@ const searchPush = () => {
 <style lang="less" scoped>
 .mainSearch {
   // height: 100%;
-  padding-top: 50px;
+  margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -314,6 +308,14 @@ const searchPush = () => {
         }
       }
     }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 10px;
+    color: #aaa;
+    user-select: none;
+    font-size: 14px;
   }
 }
 .searchInput {

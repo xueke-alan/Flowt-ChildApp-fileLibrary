@@ -6,7 +6,7 @@ import { TableColumns } from "naive-ui/es/data-table/src/interface";
 
 type TableStore = {
   columns: TableColumns<any>;
-  data: any[];
+  dataRow: any[];
   tableLoading: boolean;
   tableSwitchStyle: {};
   tableMaxHeight: string;
@@ -81,15 +81,22 @@ export const useChildQuoteStore = defineStore({
         width: "200",
       },
     ],
-    data: [],
+    dataRow: [],
     tableLoading: true,
     tableSwitchStyle: true,
     tableMaxHeight: "",
     clickedRowId: "",
   }),
   getters: {
-    tableMinHeight(state) {
-      return state.data.length > 0 ? "" : state.tableMaxHeight;
+    data: (state) => (filter: string) => {
+      if (filter) {
+        return state.dataRow.filter((row) => {
+          const flag = Object.values(row).join("\n\n").includes(filter);
+          return flag;
+        });
+      } else {
+        return state.dataRow;
+      }
     },
   },
   actions: {
@@ -111,7 +118,7 @@ export const useChildQuoteStore = defineStore({
       this.tableMaxHeight = table.clientHeight - header.clientHeight - 2 + "px";
     },
     async getData() {
-      this.data = [
+      this.dataRow = [
         {
           id: 1,
           测试项目: "<div>邵氏硬度</div><div>Shore Hardness</div>",

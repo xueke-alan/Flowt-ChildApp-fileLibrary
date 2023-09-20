@@ -82,9 +82,14 @@ export const useChildQuoteStore = defineStore({
         ],
       },
     ],
+    selected: "",
   }),
   getters: {},
-  actions: {},
+  actions: {
+    selectOption(option: string) {
+      this.selected = option;
+    },
+  },
 });
 
 // 在setup外部使用时调用

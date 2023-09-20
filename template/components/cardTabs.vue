@@ -1,10 +1,24 @@
-<template >
-  <n-card class="card"
-    content-style="display: flex;flex-direction: column;padding-top: 10px;overflow: hidden;height: 100%;"
-    :key="matchedRouter.name">
+<template>
+  <n-card
+    class="card"
+    content-style="display: flex;flex-direction: column;padding: 10px;overflow: hidden;height: 100%;"
+    :key="matchedRouter.name"
+  >
     <div class="header">
-      <n-tabs class="tabs" type="line" :value="currentRouteName" @update:value="(name) => { router.push({ name }) }">
-        <n-tab :name="(name as string)" v-for="{ name, meta } in matchedRouter.children">
+      <n-tabs
+        class="tabs"
+        type="line"
+        :value="currentRouteName"
+        @update:value="
+          (name) => {
+            router.push({ name });
+          }
+        "
+      >
+        <n-tab
+          :name="(name as string)"
+          v-for="{ name, meta } in matchedRouter.children"
+        >
           <div class="tab">
             <n-icon size="20" class="icon">
               <component :is="meta?.icon" />
@@ -20,22 +34,23 @@
         </n-icon>
       </div>
     </div>
-    <router-view></router-view>
+
+    <router-view style="padding: 10px"></router-view>
   </n-card>
 </template>
 
 <script lang="ts" setup>
-import { PersonFeedback24Regular } from '@vicons/fluent';
-import { NCard, NTabs, NTab, NIcon } from 'naive-ui'
-import { computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { PersonFeedback24Regular } from "@vicons/fluent";
+import { NCard, NTabs, NTab, NIcon } from "naive-ui";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
 const router = useRouter();
-const matchedRouter = computed(() => router.currentRoute.value.matched[0])
-const currentRouteName = computed(() => router.currentRoute.value.name as string)
-const subtitle = computed(() => matchedRouter.value.meta.subtitle)
+const matchedRouter = computed(() => router.currentRoute.value.matched[0]);
+const currentRouteName = computed(
+  () => router.currentRoute.value.name as string
+);
+const subtitle = computed(() => matchedRouter.value.meta.subtitle);
 console.log(router);
-
-
 </script>
 
 <style lang="less" scoped>
@@ -44,9 +59,9 @@ console.log(router);
   height: 100%;
 
   .header {
+    padding: 0 10px;
+    user-select: none;
     .tabs {
-      margin-bottom: 10px;
-
       .tab {
         font-size: 14px;
         display: flex;
@@ -62,7 +77,7 @@ console.log(router);
       position: absolute;
       top: 10px;
       right: 24px;
-      opacity: .8;
+      opacity: 0.8;
       height: 45px;
       overflow: hidden;
       display: flex;

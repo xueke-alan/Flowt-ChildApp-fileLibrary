@@ -1,4 +1,9 @@
-import { AppsListDetail24Regular } from "@vicons/fluent";
+import {
+  ChartMultiple24Regular,
+  Search24Regular,
+  TextBulletListSquare24Regular,
+  BookInformation24Regular,
+} from "@vicons/fluent";
 
 const routes = [
   {
@@ -16,10 +21,10 @@ const routes = [
         path: "tab-one",
         // 父路由的component可以是从模板格式中选择
         component: () => import("@/views/search/index.vue"),
-        name: "搜索报价单",
+        name: "搜索",
         meta: {
           // 一些meta信息
-          icon: AppsListDetail24Regular,
+          icon: Search24Regular,
           display: "show:lazy",
         },
       },
@@ -27,32 +32,33 @@ const routes = [
         path: "tab-two",
         // 父路由的component可以是从模板格式中选择
         component: () => import("@/views/query/index.vue"),
-        name: "全部报价单",
+        name: "报价单",
         meta: {
           // 一些meta信息
-          icon: AppsListDetail24Regular,
+          icon: TextBulletListSquare24Regular,
           display: "show:lazy",
         },
       },
       {
         path: "tab-fore",
         // 父路由的component可以是从模板格式中选择
-        component: () => import("@/views/search/index.vue"),
+        component: () => import("@/views/charts/index.vue"),
         name: "报价说明",
         meta: {
           // 一些meta信息
-          icon: AppsListDetail24Regular,
+          icon: BookInformation24Regular,
           display: "show:lazy",
         },
       },
       {
         path: "tab-three",
         // 父路由的component可以是从模板格式中选择
-        component: () => import("@/views/search/index.vue"),
+        component: () => import("@/views/charts/index.vue"),
+
         name: "查询统计",
         meta: {
           // 一些meta信息
-          icon: AppsListDetail24Regular,
+          icon: ChartMultiple24Regular,
           display: "show:lazy",
         },
       },
