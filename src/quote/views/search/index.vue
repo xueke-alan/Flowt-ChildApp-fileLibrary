@@ -23,7 +23,8 @@
         </n-icon>
         <span class="title">
           <span>MR-Lab</span>
-          <span class="right">报价系统</span>
+          <span class="right">报价系统 </span>
+          <span>.</span>
         </span>
       </div>
 
@@ -78,7 +79,7 @@
             v-for="i in 6"
             round
             :bordered="false"
-            type="success"
+            
             closable
           >
             <template #icon>
@@ -89,7 +90,7 @@
             气候老化类 {{ i }}
           </n-tag>
 
-          <n-tag class="tag" round :bordered="false" type="warning" closable>
+          <n-tag class="tag" round :bordered="false"  closable>
             测试咨询统计表
           </n-tag>
 
@@ -291,8 +292,7 @@ const searchPush = () => {
       margin-bottom: 20px;
       display: flex;
       align-items: center;
-      // gap: 30px;
-      font-size: 48px;
+      font-size: 42px;
 
       line-height: 1.45;
       font-weight: 900;
@@ -300,7 +300,7 @@ const searchPush = () => {
       font-family: Quotes, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Oxygen, Ubuntu, "Microsoft Yahei", Cantarell, "Fira Sans", "Droid Sans",
         "Helvetica Neue", sans-serif;
-user-select: none;
+      user-select: none;
       .title {
         background: -webkit-linear-gradient(315deg, #8b8b8b 25%, #777777);
         background-clip: text;
@@ -310,8 +310,7 @@ user-select: none;
         align-items: center;
         gap: 15px;
         .right {
-          font-size: 40px;
-         
+          font-size: 34px;
         }
       }
     }
