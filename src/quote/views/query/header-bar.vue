@@ -12,15 +12,21 @@
         </n-button>
       </n-button-group>
 
-      <n-dropdown size="small" trigger="click" :options="store.moreOptions">
+      <n-dropdown
+        size="small"
+        trigger="click"
+        :options="store.moreOptions"
+        @select="store.selectOption"
+      >
         <n-button size="small">
           更多
 
-          <n-icon size="12" style="margin: 0 3px; color: #aaa">
-            <component :is="DividerTall24Filled"></component>
-          </n-icon>
-          燃烧
-
+          <template v-if="!store.options.includes(store.selected)">
+            <n-icon size="12" style="margin: 0 3px; color: #aaa">
+              <component :is="DividerTall24Filled"></component>
+            </n-icon>
+            {{ store.selected }}
+          </template>
           <n-icon size="20" style="margin-left: 5px; color: #aaa">
             <component :is="AddSquareMultiple20Regular"></component>
           </n-icon>

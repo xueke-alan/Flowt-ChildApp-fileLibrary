@@ -42,7 +42,7 @@ const routes = [
       {
         path: "tab-fore",
         // 父路由的component可以是从模板格式中选择
-        component: () => import("@/views/charts/index.vue"),
+        component: () => import("@/views/detail/index.vue"),
         name: "报价说明",
         meta: {
           // 一些meta信息
