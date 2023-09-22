@@ -1,6 +1,6 @@
 // import { createApp } from "vue";
 import App from "./App.vue";
-import { router } from "@/router/index"; // 导入路由配置
+import { router } from "~/router/index"; // 导入路由配置
 // import { createPinia } from "pinia";
 import { useQiankunGlobalState } from "~/hooks/useGlobalState";
 import { createApp } from "vue";

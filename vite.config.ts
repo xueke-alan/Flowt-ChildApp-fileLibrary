@@ -26,6 +26,7 @@ export default defineConfig({
     alias: {
       "~": path.resolve(__dirname, "./template"),
       "@": path.resolve(__dirname, `./src/`, microAppName),
+      "!": path.resolve(__dirname, "./"),
     },
   },
   // 开发环境与生产环境路径配置

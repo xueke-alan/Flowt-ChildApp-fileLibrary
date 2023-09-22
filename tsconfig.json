@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "module": "commonjs",
+    "module": "es2020",
     "moduleResolution": "node",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -27,14 +27,17 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "paths": {
-      "@/*": [
-        "src/quote/*"
+      "!/*": [
+        "./*"
       ],
       "~/*": [
         "template/*"
       ],
       "/#/*": [
         "types/*"
+      ],
+      "@/*": [
+        "src/quote/*"
       ],
       "vite/client": [
         "node_modules/@types/vite__client"

@@ -50,7 +50,7 @@ function generteTsconfig(microAppName) {
   const tsconfig = {
     compilerOptions: {
       target: "es2020",
-      module: "commonjs",
+      module: "es2020",
       moduleResolution: "node",
       strict: true,
       forceConsistentCasingInFileNames: true,
@@ -70,9 +70,10 @@ function generteTsconfig(microAppName) {
       noImplicitAny: false,
       skipLibCheck: true,
       paths: {
-        "@/*": [`src/${microAppName}/*`],
-        "~/*": ["template/*"],
-        "/#/*": ["types/*"],
+        "!/*": ["./*"], // 根路径
+        "~/*": ["template/*"], // 公共路径
+        "/#/*": ["types/*"], // 类型路径
+        "@/*": [`src/${microAppName}/*`], // 子应用业务路径
         "vite/client": ["node_modules/@types/vite__client"],
       },
     },

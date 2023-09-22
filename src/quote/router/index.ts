@@ -1,7 +1,9 @@
 const baseUrl = "quote";
 import { createRouter, createWebHistory } from "vue-router";
+import type { IModuleType } from './types';
 
 import quoteRouter from "./quote";
+const modules = import.meta.glob<IModuleType>('./**/*.ts', { eager: true });
 
 const routes: any[] = [...quoteRouter];
 
