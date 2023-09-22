@@ -3,11 +3,11 @@
   "iconName": "ReceiptMoney24Regular",
   "children": [
     {
-      "path": "search",
+      "path": "query",
       "meta": {
         "title": "报价单",
         "iconName": "ReceiptMoney24Regular",
-        "group":"资源"
+        "group": "资源"
       }
     }
   ]

@@ -4,7 +4,8 @@
     "skipLibCheck": true,
     "module": "es2020",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+
   },
   "include": ["vite.config.ts"]
 }
