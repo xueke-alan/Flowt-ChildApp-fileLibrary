@@ -7,6 +7,8 @@ import type { IModuleType } from "./types";
 import quoteRouter from "@/router/quote";
 const modules = import.meta.glob<IModuleType>("@/router/*.ts", { eager: true });
 console.log(modules);
+console.log(Object.values(modules));
+
 console.log(quoteRouter);
 
 const routes: any[] = [...quoteRouter];
