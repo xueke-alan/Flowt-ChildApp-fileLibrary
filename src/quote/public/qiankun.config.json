@@ -3,7 +3,7 @@
   "iconName": "ReceiptMoney24Regular",
   "children": [
     {
-      "path": "query",
+      "path": "quote",
       "meta": {
         "title": "报价单",
         "iconName": "ReceiptMoney24Regular",

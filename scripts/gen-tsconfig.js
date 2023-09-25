@@ -1,20 +1,38 @@
 import { writeFileSync, readdirSync, readFileSync } from "fs";
 import readline from "readline";
 import chalk from "chalk";
-import importTS from "./import-ts.js";
+import fs from "fs";
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-// 获取提示src中可打包的文件
+let rl;
 const microAppList = getSubdirectories("./src");
 const validOptions = simplifyList(microAppList);
-const echoString = generteEchoString(validOptions);
-console.log(echoString);
 
-chooseMicroAppName();
+// 获取传递给脚本的参数
+const args = process.argv.slice(2);
+
+switch (args[0]) {
+  case "now":
+    const text = fs.readFileSync("./tsconfig.json", "utf8");
+    const microAppNameNow = JSON.parse(text);
+    console.log(
+      chalk.green(" Now microAppName: ") +
+        `${microAppNameNow.microAppName} \n\n` +
+        chalk.blue("> wait for next step.\n ")
+    );
+    break;
+
+  default:
+    // 获取提示src中可打包的文件
+    rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    const echoString = generteEchoString(validOptions);
+    console.log(echoString);
+
+    chooseMicroAppName();
+    break;
+}
 
 function chooseMicroAppName() {
   // 生成提示消息字符串

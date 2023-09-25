@@ -5,7 +5,7 @@
   "iconName": "ReceiptMoney24Regular",
   "children": [
     {
-      "path": "",
+      "path": "quote",
       "meta": {
         "title": "报价单",
         "iconName": "ReceiptMoney24Regular",

@@ -1,45 +1,49 @@
 <template>
-  <div style="display: flex;justify-content: space-between;margin-bottom: 8px;">
-    <n-button-group>
-      <n-button ghost size="small">
-        正式员工
-      </n-button>
-      <n-button ghost size="small">
-        外包员工
-      </n-button>
-      <n-button size="small">
-        实习生
-      </n-button>
-      <n-button size="small">
-        准入职
-      </n-button>
-      <n-button size="small">
-        已离职
-      </n-button>
-    </n-button-group>
+  <div>
 
-    <div style="display: flex;">
-      <n-input v-model:value="value" round  size="small" type="text" placeholder="工号/姓名/分机/分组"
-        style="margin-right: 10px;width: 250px;" />
-      <n-button ghost size="small" style="margin-right: 10px;" @click="getUserList">
-        刷新
-      </n-button>
 
+    <div style="display: flex;justify-content: space-between;margin-bottom: 8px;">
       <n-button-group>
         <n-button ghost size="small">
-          录入
+          正式员工
+        </n-button>
+        <n-button ghost size="small">
+          外包员工
+        </n-button>
+        <n-button size="small">
+          实习生
+        </n-button>
+        <n-button size="small">
+          准入职
+        </n-button>
+        <n-button size="small">
+          已离职
+        </n-button>
+      </n-button-group>
+
+      <div style="display: flex;">
+        <n-input v-model:value="value" round size="small" type="text" placeholder="工号/姓名/分机/分组"
+          style="margin-right: 10px;width: 250px;" />
+        <n-button ghost size="small" style="margin-right: 10px;" @click="getUserList">
+          刷新
         </n-button>
 
-      </n-button-group>
+        <n-button-group>
+          <n-button ghost size="small">
+            录入
+          </n-button>
+
+        </n-button-group>
+      </div>
     </div>
+    <n-spin :show="tableLoading" style="height: 100%;">
+      <n-data-table ref="myTable" class="datatable" striped :columns="(columns as TableColumns<any>)" :data="[...data]"
+        size="small" :style="tableSwitchStyle" :single-line="false" :row-props="rowProps" :max-height="tableMaxHeight"
+        :min-height="data.length > 0 ? '' : tableMaxHeight">
+        <template #empty><br></template>
+      </n-data-table>
+    </n-spin>
   </div>
-  <n-spin :show="tableLoading" style="height: 100%;">
-    <n-data-table ref="myTable" class="datatable" striped :columns="(columns as TableColumns<any>)" :data="[...data]"
-      size="small" :style="tableSwitchStyle" :single-line="false" :row-props="rowProps" :max-height="tableMaxHeight"
-      :min-height="data.length > 0 ? '' : tableMaxHeight">
-      <template #empty><br></template>
-    </n-data-table>
-  </n-spin>
 </template>
 
 <script lang="ts" setup>
@@ -209,10 +213,5 @@ onUnmounted(() => {
   transition: height .6s var(--n-bezier), opacity 1s var(--n-bezier);
 
 
-  // &.tablehide {
-  //   opacity: 0;
-  //   display: none;
-
-  // }
 }
 </style>

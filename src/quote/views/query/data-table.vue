@@ -1,34 +1,16 @@
 <template>
   <div class="data-table-content">
     <n-spin :show="store.tableLoading">
-      <n-data-table
-        size="small"
-        class="datatable quoteListDrawerTarget"
-        :class="{ blurTable: drawerStore.active }"
-        :single-line="false"
-        :row-props="rowProps"
-        :render-cell="renderCell"
-        :columns="store.columns"
-        :data="store.data(headerBarStore.searchValue)"
-        :style="store.tableSwitchStyle"
-        :max-height="store.tableMaxHeight"
-        :min-height="store.data.length > 0 ? '' : store.tableMaxHeight"
-      >
+      <n-data-table size="small" class="datatable quoteListDrawerTarget" :class="{ blurTable: drawerStore.active }"
+        :single-line="false" :row-props="rowProps" :render-cell="renderCell" :columns="store.columns"
+        :data="store.data(headerBarStore.searchValue)" :style="store.tableSwitchStyle" :max-height="store.tableMaxHeight"
+        :min-height="store.data.length > 0 ? '' : store.tableMaxHeight">
         <template #empty><br /></template>
       </n-data-table>
     </n-spin>
 
-    <n-dropdown
-      placement="bottom-start"
-      trigger="manual"
-      :x="x"
-      :y="y"
-      size="small"
-      :options="options"
-      :show="showDropdown"
-      :on-clickoutside="onClickoutside"
-      @select="handleSelect"
-    />
+    <n-dropdown placement="bottom-start" trigger="manual" :x="x" :y="y" size="small" :options="options"
+      :show="showDropdown" :on-clickoutside="onClickoutside" @select="handleSelect" />
   </div>
 </template>
 
@@ -58,11 +40,15 @@ const rowProps = (row: any) => {
       selectedRow: drawerStore.active && row.id == store.clickedRowId,
       // blurRow: drawerStore.active && row.id != store.clickedRowId,
     },
+    ondblclick: (e) => {
+      e.preventDefault();
+      store.clickedRowId = row.id;
+      drawerStore.active = true;
+    },
     onContextmenu: (e) => {
       // e.preventDefault();
       store.clickedRowId = row.id;
       // drawerStore.active = true;
-
       e.preventDefault();
       showDropdown.value = false;
       nextTick().then(() => {
@@ -91,7 +77,6 @@ const options: DropdownOption[] = [
     props: {
       onClick: (r) => {
         console.log(r);
-
         // store.clickedRowId = row.id;
         drawerStore.active = true;
       },
@@ -127,6 +112,7 @@ onUnmounted(() => {
 .data-table-content {
   overflow: hidden;
   flex: 1;
+
   .datatable {
     opacity: 1;
     transition: height 0.6s var(--n-bezier), opacity 1s var(--n-bezier);
@@ -136,16 +122,19 @@ onUnmounted(() => {
 
 <style lang="less">
 .child-quote-query {
+
   // 条纹状
   .tableRow:nth-child(2n) .n-data-table-td {
     background-color: var(--n-th-color);
   }
+
   // hover行
   .tableRow:hover {
     .n-data-table-td {
       background-color: var(--n-th-color-hover);
     }
   }
+
   // 处理模糊
 
   .datatable {
@@ -154,7 +143,8 @@ onUnmounted(() => {
       opacity: 1;
       transition: all 0.2s ease;
     }
-    .n-data-table-td > div {
+
+    .n-data-table-td>div {
       filter: blur(0px);
       opacity: 1;
       transition: all 0.2s ease;
@@ -166,13 +156,15 @@ onUnmounted(() => {
         opacity: 0.6;
         transition: all 0.2s ease;
       }
-      .n-data-table-td > div {
+
+      .n-data-table-td>div {
         filter: blur(4px);
         opacity: 0.6;
       }
     }
 
     .selectedRow {
+
       // position: relative;
       & td:first-child::before {
         content: "";
@@ -183,9 +175,11 @@ onUnmounted(() => {
         width: 2px;
         background-color: var(--n-th-icon-color-active);
       }
+
       .n-data-table-td {
         background-color: var(--n-th-color-hover);
-        & > div {
+
+        &>div {
           filter: blur(0px);
           opacity: 1;
         }

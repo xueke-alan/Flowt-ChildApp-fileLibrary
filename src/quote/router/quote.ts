@@ -8,9 +8,9 @@ import { RouteRecordRaw } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
   {
-    path: "",
+    path: "/quote",
     name: "quote",
-    // redirect: "/query/search",
+    redirect: "/quote/search",
     meta: {
       subtitle: "查询测试报价，测试周期等",
     },
@@ -23,6 +23,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           icon: Search24Regular,
           display: "show:lazy",
+          
         },
       },
       {

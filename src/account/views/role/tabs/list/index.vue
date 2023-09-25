@@ -1,5 +1,5 @@
 <template>
-  <!-- <headerBar></headerBar> -->
+  
   <div style="display: flex;height: 100%; overflow: hidden;">
 
     <n-card size="small" style="flex: 1;max-width: 350px;"

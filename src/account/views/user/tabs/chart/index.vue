@@ -1,3 +1,3 @@
 <template>
-  图
+  <div>图</div>
 </template>

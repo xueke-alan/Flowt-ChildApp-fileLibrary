@@ -1,6 +1,3 @@
 <template>
-    <div>
-        <p>关于其他的一些细节</p>
-        <p></p>
-    </div>
+    <div>关于其他的一些细节</div>
 </template>

@@ -1,24 +1,10 @@
 <template>
-  <n-card
-    class="card"
-    content-style="display: flex;flex-direction: column;padding: 10px;overflow: hidden;height: 100%;"
-    :key="matchedRouter.name"
-  >
+  <n-card class="card"
+    content-style="display: flex;flex-direction: column;padding: 10px;overflow: hidden;height: 100%;position: relative;"
+    :key="matchedRouter.name">
     <div class="header">
-      <n-tabs
-        class="tabs"
-        type="line"
-        :value="currentRouteName"
-        @update:value="
-          (name) => {
-            router.push({ name });
-          }
-        "
-      >
-        <n-tab
-          :name="(name as string)"
-          v-for="{ name, meta } in matchedRouter.children"
-        >
+      <n-tabs class="tabs" type="line" :value="currentRouteName" @update:value="name => router.push({ name })">
+        <n-tab :name="(name as string)" v-for="{ name, meta } in matchedRouter.children">
           <div class="tab">
             <n-icon size="20" class="icon">
               <component :is="meta?.icon" />
@@ -35,7 +21,13 @@
       </div>
     </div>
 
-    <router-view style="padding: 10px"></router-view>
+    <router-view v-slot="{ Component }">
+      <div class="tanCantainer">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </div>
+    </router-view>
   </n-card>
 </template>
 
@@ -61,6 +53,7 @@ console.log(router);
   .header {
     padding: 0 10px;
     user-select: none;
+
     .tabs {
       .tab {
         font-size: 14px;
@@ -92,5 +85,29 @@ console.log(router);
       }
     }
   }
+
+  .tanCantainer {
+    // padding: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &>* {
+      padding: 10px;
+    }
+  }
 }
 </style>
+<style scoped>
+/* 定义 "fade" 过渡效果的 CSS 样式 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
+

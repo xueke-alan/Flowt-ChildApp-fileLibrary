@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "serve": "node scripts/gen-tsconfig.js now && vite",
+    "switch": "node scripts/gen-tsconfig.js",
     "dev": "node scripts/gen-tsconfig.js && vite",
     "build": "node scripts/gen-tsconfig.js && vue-tsc --noEmit --skipLibCheck && vite build",
     "preview": "vite preview",
