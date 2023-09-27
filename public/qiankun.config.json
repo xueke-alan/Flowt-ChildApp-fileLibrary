@@ -1,15 +1,28 @@
 {
-  "name": "flowt_micro_quote",
-  "baseUrl": "quote",
-  "title": "报价单",
-  "iconName": "ReceiptMoney24Regular",
+  "name": "flowt_micro_fileLibrary",
+  "baseUrl": "fileLibrary",
+  "title": "文件库",
+  "iconName": "PeopleCommunity24Regular",
   "children": [
     {
-      "path": "quote",
+      "path": "standards",
       "meta": {
-        "title": "报价单",
-        "iconName": "ReceiptMoney24Regular",
-        "group": "资源"
+        "title": "标准库",
+        "iconName": "PersonTag24Regular"
+      }
+    },
+    {
+      "path": "user",
+      "meta": {
+        "title": "测试规范",
+        "iconName": "Guest24Regular"
+      }
+    },
+    {
+      "path": "user2",
+      "meta": {
+        "title": "实验记录表",
+        "iconName": "Guest24Regular"
       }
     }
   ]

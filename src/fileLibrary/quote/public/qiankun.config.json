@@ -1,0 +1,14 @@
+{
+  "title": "报价单",
+  "iconName": "ReceiptMoney24Regular",
+  "children": [
+    {
+      "path": "quote",
+      "meta": {
+        "title": "报价单",
+        "iconName": "ReceiptMoney24Regular",
+        "group": "资源"
+      }
+    }
+  ]
+}
