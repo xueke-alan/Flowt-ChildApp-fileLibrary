@@ -103,7 +103,7 @@ console.log(router);
 /* 定义 "fade" 过渡效果的 CSS 样式 */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s;
+  transition: all .25s var(--n-bezier);
 }
 
 .fade-enter,

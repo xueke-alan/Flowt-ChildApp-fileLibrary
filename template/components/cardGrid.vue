@@ -1,19 +1,13 @@
 <template>
   <div class="cardGrid">
-    <n-card
-      class="gridCon"
-      :class="{ hide }"
-      content-style="height:100%;padding-right:10px"
-    >
+    <n-card class="gridCon" :class="{ hide }" content-style="height:100%;padding-right:10px">
       <n-scrollbar style="padding-right: 20px; height: 100%">
-        <div
-          style="
+        <div style="
             display: flex;
             margin-bottom: 10px;
             align-items: center;
             justify-content: space-between;
-          "
-        >
+          ">
           <div style="display: flex; align-items: center">
             <n-icon size="24" style="margin-right: 15px">
               <component :is="Stack24Regular"></component>
@@ -26,27 +20,20 @@
             </div>
           </div>
 
-          <div
-            style="
+          <div style="
               display: flex;
               gap: 10px;
               align-items: center;
               justify-content: space-between;
-            "
-          >
+            ">
             <n-button-group size="small">
               <n-button @click="handleClickBackBtn"> 机构分组 </n-button>
               <n-button @click="handleClickBackBtn"> 年号分组 </n-button>
             </n-button-group>
             <n-button-group size="small">
-              <n-button
-                strong
-                secondary
-                :type="route.name == matchedRouter.name ? 'default' : 'primary'"
-                @click="handleClickBackBtn"
-                :disabled="route.name == matchedRouter.name"
-                :style="{ opacity: route.name == matchedRouter.name ? 0.5 : 1 }"
-              >
+              <n-button strong secondary :type="route.name == matchedRouter.name ? 'default' : 'primary'"
+                @click="handleClickBackBtn" :disabled="route.name == matchedRouter.name"
+                :style="{ opacity: route.name == matchedRouter.name ? 0.5 : 1 }">
                 <n-icon size="16" class="mr-1">
                   <component :is="Dismiss24Regular"></component>
                 </n-icon>
@@ -57,18 +44,10 @@
           </div>
         </div>
         <n-grid cols="2 900:4 1200:5" :collapsed="false" x-gap="15" y-gap="15">
-          <n-gi
-            v-for="(i, index) in matchedRouter.children.filter(
-              (r) => !r.meta?.hidden
-            )"
-            style="cursor: pointer"
-          >
-            <n-card
-              hoverable
-              class="eachcard"
-              :class="{ current: index == 1 }"
-              @click="handleClickCard(i)"
-            >
+          <n-gi v-for="(i, index) in matchedRouter.children.filter(
+            (r) => !r.meta?.hidden
+          )" style="cursor: pointer">
+            <n-card hoverable class="eachcard" :class="{ current: index == 1 }" @click="handleClickCard(i)">
               <template #header>
                 <div class="header">
                   <span class="title">{{ i.name?.toString() }}</span>
@@ -91,12 +70,7 @@
         </n-grid>
       </n-scrollbar>
     </n-card>
-    <n-tag
-      round
-      class="showGirdBtn"
-      :class="{ hide }"
-      @click="handleClickshowGirdBtn"
-    >
+    <n-tag round class="showGirdBtn" :class="{ hide }" @click="handleClickshowGirdBtn">
       <n-icon size="30" style="margin-left: 2px; margin-top: 2px">
         <component :is="Stack24Regular"></component>
       </n-icon>
@@ -185,6 +159,7 @@ const handleClickBackBtn = () => {
   overflow: hidden;
   background-color: #aaaaaa10;
   border-color: #aaaaaa30;
+
   .subTitle {
     font-size: 14px;
     color: #aaa;
@@ -256,7 +231,7 @@ const handleClickBackBtn = () => {
   flex-direction: column;
   position: relative;
   height: 100%;
-  animation: fadeIn 0.6s ease-in-out forwards;
+  // animation: fadeIn 0.6s ease-in-out forwards;
 
   /* 应用名为fadeIn的动画，持续1秒，渐进缓动函数，动画结束后保持最终状态 */
   .gridCon {

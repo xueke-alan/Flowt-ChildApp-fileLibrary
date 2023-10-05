@@ -186,6 +186,11 @@ onUnmounted(() => {
       }
     }
   }
+  .datatable{
+    .n-data-table-base-table-header{
+      pointer-events: none;
+    }
+  }
 
   // .n-scrollbar-container {
   //   .n-data-table-td > div {
