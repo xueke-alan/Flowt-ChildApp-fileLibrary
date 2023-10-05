@@ -88,7 +88,8 @@ console.log(router);
 
   .tanCantainer {
     // padding: 10px;
-    height: 100%;
+    flex: 1;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 

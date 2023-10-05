@@ -20,6 +20,11 @@ export default defineConfig({
       output: {
         format: "es",
       },
+      // input: {
+      //   account: path.resolve(__dirname, 'index.html'),
+      //   fileLibrary: path.resolve(__dirname, 'index.html'),
+      //   quote: path.resolve(__dirname, 'index2.html'),
+      // },
     },
   },
   resolve: {
@@ -29,6 +34,19 @@ export default defineConfig({
       "!": path.resolve(__dirname, "./"),
     },
   },
+  // 自定义底层的 Rollup 打包配置
+  // rollupOptions: {
+  //   input: {
+  //     admin: path.resolve(__dirname, 'src/index.html'),
+  //     page: path.resolve(__dirname, 'src/page/index.html'),
+  //     index: path.resolve(__dirname, 'src/index/index.html'),
+  //   },
+  //   output: {
+  //     chunkFileNames: 'static/js/[name]-[hash].js',
+  //     entryFileNames: 'static/js/[name]-[hash].js',
+  //     assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+  //   }
+  // },
   // 开发环境与生产环境路径配置
   // 生产环境中必须写死base地址，带上https://
   base: `https://microapp.flowt.work/${microAppName}`,

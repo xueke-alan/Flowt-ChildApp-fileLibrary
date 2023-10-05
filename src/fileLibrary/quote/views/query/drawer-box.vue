@@ -28,8 +28,8 @@
 <script lang="ts" setup>
 import { NDrawerContent, NDrawer, NIcon } from "naive-ui";
 import { SlideText48Regular } from "@vicons/fluent";
-import { store } from "@/store/drawer";
-import { store as tableStore } from "@/store/table";
+import { store } from "@/quote/store/drawer";
+import { store as tableStore } from "@/quote/store/table";
 import { onUnmounted } from "vue";
 
 const afterLeave = () => {

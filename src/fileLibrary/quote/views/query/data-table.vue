@@ -25,9 +25,9 @@ import {
   watch,
 } from "vue";
 import { DropdownOption, NDataTable, NSpin, NDropdown } from "naive-ui";
-import { store } from "@/store/table";
-import { store as drawerStore } from "@/store/drawer";
-import { store as headerBarStore } from "@/store/headerBar";
+import { store } from "@/quote/store/table";
+import { store as drawerStore } from "@/quote/store/drawer";
+import { store as headerBarStore } from "@/quote/store/headerBar";
 import { store as globalStore } from "~/stores/global";
 import { renderIcon } from "~/utils";
 import { Beaker24Regular } from "@vicons/fluent";

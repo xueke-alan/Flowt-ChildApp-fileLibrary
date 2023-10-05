@@ -121,7 +121,7 @@ function generteTsconfig(microAppName) {
 
 function generteQiankunConfig(microAppName) {
   // 使用fs.readFile异步方法来读取JSON文件
-  const jsonFilePath = `./src/${microAppName}/public/qiankun.config.json`;
+  const jsonFilePath = `./src/${microAppName}/qiankun.config.json`;
   const outPath = "./public/qiankun.config.json";
   try {
     const fileContent = readFileSync(jsonFilePath, "utf-8");

@@ -143,7 +143,7 @@ import {
   NSelect,
   NPopselect,
 } from "naive-ui";
-import { searchquoteByQuery } from "@/api/quote";
+import { searchquoteByQuery } from "@/quote/api";
 import {
   BookmarkSearch24Regular,
   Search48Filled,
@@ -413,3 +413,4 @@ const searchPush = () => {
 </style>
 
 <style></style>
+!/src/fileLibrary/quote/api

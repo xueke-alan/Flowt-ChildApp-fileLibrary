@@ -12,10 +12,10 @@
       }
     },
     {
-      "path": "user",
+      "path": "quote",
       "meta": {
-        "title": "测试规范",
-        "iconName": "Guest24Regular"
+        "title": "报价单",
+        "iconName": "ReceiptMoney24Regular"
       }
     },
     {

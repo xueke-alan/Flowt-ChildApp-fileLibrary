@@ -74,8 +74,8 @@ import {
   AddSquareMultiple20Regular,
   DividerTall24Filled,
 } from "@vicons/fluent";
-import { store } from "@/store/headerBar";
-import { store as drawerStore } from "@/store/drawer";
+import { store } from "@/quote/store/headerBar";
+import { store as drawerStore } from "@/quote/store/drawer";
 </script>
 
 <style scoped lang="less">
