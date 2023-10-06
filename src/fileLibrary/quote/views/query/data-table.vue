@@ -99,6 +99,7 @@ watch(() => globalStore.getDarkTheme, store.switchStyle);
 
 onMounted(async () => {
   store.getData();
+  // BUG 第一次加载的时候还没有元素，要等元素出现后才执行代码
   store.resetTableMaxHeight();
   window.addEventListener("resize", store.resetTableMaxHeight);
 });

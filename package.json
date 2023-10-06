@@ -20,6 +20,7 @@
     "naive-ui": "^2.34.4",
     "pinia": "^2.1.6",
     "qs": "^6.11.2",
+    "v-resize-observer": "^2.0.2",
     "vite-plugin-checker": "^0.6.2",
     "vite-plugin-qiankun": "^1.0.15",
     "vue": "^3.3.4",

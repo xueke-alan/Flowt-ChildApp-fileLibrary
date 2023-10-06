@@ -5,7 +5,7 @@ import {
   BookInformation24Regular,
 } from "@vicons/fluent";
 import { RouteRecordRaw } from "vue-router";
-
+import cardTabs from "~/components/cardTabs.vue";
 const routes: RouteRecordRaw = {
   path: "/quote",
   name: "quote",
@@ -13,7 +13,7 @@ const routes: RouteRecordRaw = {
   meta: {
     subtitle: "查询测试报价，测试周期等",
   },
-  component: () => import("~/components/cardTabs.vue"),
+  component: cardTabs,
   children: [
     {
       path: "search",

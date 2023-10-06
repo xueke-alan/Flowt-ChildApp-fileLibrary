@@ -1,22 +1,14 @@
-// import { createApp } from "vue";
 import App from "./App.vue";
 import { router } from "~/router/index"; // 导入路由配置
-// import { createPinia } from "pinia";
 import { useQiankunGlobalState } from "~/hooks/useGlobalState";
 import { createApp } from "vue";
-// import mitt from 'mitt';
 import { setupStore } from "~/stores/index";
-
-import {
-  renderWithQiankun,
-  qiankunWindow,
-} from "vite-plugin-qiankun/dist/helper";
+import { renderWithQiankun, qiankunWindow, } from "vite-plugin-qiankun/dist/helper";
 
 // 挂载函数
 function render(props: any) {
   const app = createApp(App);
   const { container } = props;
-  console.log(props);
 
   // 挂载状态管理
   setupStore(app);
@@ -29,11 +21,8 @@ let unsubscribList: any[] = [];
 
 renderWithQiankun({
   mount(props) {
-    console.log(props);
     render(props);
-
     props.message();
-
     // 将传入的state存入自己的store
     const { unsubscribeDesignStore } = useQiankunGlobalState(
       props.globalStateList
