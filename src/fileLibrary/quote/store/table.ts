@@ -111,17 +111,17 @@ export const useChildQuoteStore = defineStore({
     },
     resetTableMaxHeight() {
       console.log('12345678900');
-      
+
       // 获取表格容器高度
       const table = document.querySelector(".data-table-content");
+      const header = document.querySelector(".data-table-content .n-data-table-base-table-header");
       console.log(table);
-      
-      
-      // 获取表头高度
-      const header = table.querySelector(".n-data-table-base-table-header")!;
-      console.log(table.clientHeight - header.clientHeight - 2);
-      // 减去表头及表头border，则为表格主体高度
-      this.tableMaxHeight = table.clientHeight - header.clientHeight - 2 + "px";
+      if (table && header) {
+        // 获取表头高度
+        console.log(table.clientHeight - header.clientHeight - 2);
+        // 减去表头及表头border，则为表格主体高度
+        this.tableMaxHeight = table.clientHeight - header.clientHeight - 2 + "px";
+      }
     },
     async getData() {
       this.dataRow = [

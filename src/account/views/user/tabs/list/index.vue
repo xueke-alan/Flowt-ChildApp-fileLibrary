@@ -72,29 +72,17 @@ const paginationReactive = reactive({
 const router = useRouter()
 
 
-// 监听主题变化，卸载大Dom数量组件
-import { useGlobalSetting } from "~/stores/global";
-const globalStore = useGlobalSetting();
 
-console.log(globalStore.darkTheme);
+
+
+
+
 
 const tableLoading = ref(true)
 const tableMaxHeight = ref("0")
 const tableSwitchStyle = ref({})
 
-// TODO 还要监听侧边栏收起 需要拿数据
-watch(
-  () => globalStore.getDarkTheme,
-  () => {
-    tableSwitchStyle.value = { display: 'none', opacity: 0 }
-    setTimeout(() => {
-      tableSwitchStyle.value = { opacity: 0 }
-    }, 300);
-    setTimeout(() => {
-      tableSwitchStyle.value = { opacity: 1 }
-    }, 400);
-  }
-)
+
 
 const rowProps = (row: any) => {
   return {

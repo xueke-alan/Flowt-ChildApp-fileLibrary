@@ -6,24 +6,17 @@ import { store as _store } from "~/stores";
 export const useGlobalSettingStore = defineStore({
   id: "child-global-setting",
   state: (): any => ({
-    darkTheme: false,
-    loading: false,
-    designStore: null,
-    qiankunBusStore: null,
+
   }),
-  getters: {
-    getDarkTheme(): boolean {
-      return this.darkTheme;
-    },
-  },
+  getters: {},
   actions: {},
 });
 
-// Need to be used outside the setup
+// 在setup内部使用时直接创建store
+export const store = useGlobalSetting();
+
+// 在setup外部使用
 export function useGlobalSetting() {
   return useGlobalSettingStore(_store);
 }
 
-
-// 在setup内部使用时直接创建store
-export const store = useGlobalSetting();

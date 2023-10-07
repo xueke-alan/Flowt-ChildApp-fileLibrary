@@ -15,13 +15,6 @@
         "title": "报价单",
         "iconName": "ReceiptMoney24Regular"
       }
-    },
-    {
-      "path": "user2",
-      "meta": {
-        "title": "实验记录表",
-        "iconName": "Guest24Regular"
-      }
     }
   ]
 }

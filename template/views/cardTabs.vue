@@ -15,9 +15,6 @@
       </n-tabs>
       <div class="right">
         <span class="subtitle">{{ subtitle }}</span>
-        <n-icon size="20" class="icon">
-          <component :is="PersonFeedback24Regular" />
-        </n-icon>
       </div>
     </div>
 
@@ -32,7 +29,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PersonFeedback24Regular } from "@vicons/fluent";
 import { NCard, NTabs, NTab, NIcon } from "naive-ui";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
@@ -81,7 +77,7 @@ console.log(router);
       }
 
       .subtitle {
-        margin-right: 85px;
+        margin-right: 15px;
       }
     }
   }

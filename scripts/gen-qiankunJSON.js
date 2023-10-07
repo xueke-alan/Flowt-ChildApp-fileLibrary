@@ -1,5 +1,5 @@
 
-const qiankunJSON = {
+const micoAppJSON = {
   name: "flowt_micro_fileLibrary",
   title: "文件库",
   baseUrl: "fileLibrary",

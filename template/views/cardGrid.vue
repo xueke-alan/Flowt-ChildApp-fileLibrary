@@ -98,8 +98,6 @@ import {
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import { resizeDirective as vResize } from 'v-resize-observer'
-
 const route = useRoute();
 const router = useRouter();
 const matchedRouter = computed(() => router.currentRoute.value.matched[0]);
@@ -134,7 +132,7 @@ onMounted(() => {
 const cardGridItemNum = ref(0)
 const flexStr = ref('')
 const onResize = ({ width }) => {
-  if (width > 1400) {
+  if (width > 1500) {
     cardGridItemNum.value = 6
   } else if (width > 1200) {
     cardGridItemNum.value = 5

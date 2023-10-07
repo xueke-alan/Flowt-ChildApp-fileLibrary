@@ -61,7 +61,7 @@ function chooseMicroAppName() {
 
 function generte(microAppName) {
   generteTsconfig(microAppName);
-  generteQiankunConfig(microAppName);
+  generteMicoAppConfig(microAppName);
 }
 
 function generteTsconfig(microAppName) {
@@ -119,10 +119,10 @@ function generteTsconfig(microAppName) {
   writeFileSync("tsconfig.json", JSON.stringify(tsconfig, null, 2));
 }
 
-function generteQiankunConfig(microAppName) {
+function generteMicoAppConfig(microAppName) {
   // 使用fs.readFile异步方法来读取JSON文件
-  const jsonFilePath = `./src/${microAppName}/qiankun.config.json`;
-  const outPath = "./public/qiankun.config.json";
+  const jsonFilePath = `./src/${microAppName}/micoApp.config.json`;
+  const outPath = "./public/micoApp.config.json";
   try {
     const fileContent = readFileSync(jsonFilePath, "utf-8");
     const jsonObject = {

@@ -18,8 +18,6 @@ const addBaseUrl = (routers) => {
 addBaseUrl(routes);
 
 export const router = createRouter({
-  history: createWebHistory(
-    window["__POWERED_BY_QIANKUN__"] ? `/${baseUrl}` : "/"
-  ),
+  history: createWebHistory(`/${baseUrl}`),
   routes,
 });

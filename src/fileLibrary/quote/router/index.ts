@@ -5,7 +5,7 @@ import {
   BookInformation24Regular,
 } from "@vicons/fluent";
 import { RouteRecordRaw } from "vue-router";
-import cardTabs from "~/components/cardTabs.vue";
+import cardTabs from "~/views/cardTabs.vue";
 const routes: RouteRecordRaw = {
   path: "/quote",
   name: "quote",

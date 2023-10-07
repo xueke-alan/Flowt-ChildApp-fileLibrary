@@ -22,13 +22,12 @@ import {
   onMounted,
   onUnmounted,
   ref,
-  watch,
 } from "vue";
 import { DropdownOption, NDataTable, NSpin, NDropdown } from "naive-ui";
 import { store } from "@/quote/store/table";
 import { store as drawerStore } from "@/quote/store/drawer";
 import { store as headerBarStore } from "@/quote/store/headerBar";
-import { store as globalStore } from "~/stores/global";
+
 import { renderIcon } from "~/utils";
 import { Beaker24Regular } from "@vicons/fluent";
 
@@ -95,7 +94,7 @@ const handleSelect = (option) => {
 const onClickoutside = () => {
   showDropdown.value = false;
 };
-watch(() => globalStore.getDarkTheme, store.switchStyle);
+
 
 onMounted(async () => {
   store.getData();

@@ -1,11 +1,10 @@
 import { ChartPerson24Regular } from "@vicons/fluent";
 import ASTMBackground from "../img/astm.vue";
 import { RouteRecordRaw } from "vue-router";
-import cardGrid from "~/components/cardGrid.vue";
+import cardGrid from "~/views/cardGrid.vue";
 const routes: RouteRecordRaw = {
   path: "/standards",
   name: "标准库",
-
   meta: {
     subtitle: "包含所有的标准，可选择分类方式",
     iconName: 'PersonTag24Regular'
