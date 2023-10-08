@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider  :theme-overrides="getThemeOverrides" style="height: 100%;">
+  <n-config-provider :theme-overrides="getThemeOverrides" style="height: 100%;">
     <layout />
   </n-config-provider>
 </template>
@@ -7,11 +7,12 @@
 <script setup lang="ts">
 import layout from "~/layout/index.vue";
 
-import { computed} from 'vue'
-import {  NConfigProvider } from 'naive-ui'
+import { computed, onMounted } from 'vue'
+import { NConfigProvider } from 'naive-ui'
 import { lighten } from '~/utils/index';
-
-
+import { useRouter } from 'vue-router';
+const router = useRouter()
+import wujie from "~/utils/wujie";
 
 const appTheme = "#FF6600"
 const getThemeOverrides = computed(() => {
@@ -30,4 +31,25 @@ const getThemeOverrides = computed(() => {
   };
 });
 
+onMounted(() => {
+  // 初始化页面
+  console.log(wujie.props.currentRoutePath);
+  router.push({
+    path: wujie.props.currentRoutePath,
+  });
+})
+
 </script>
+
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

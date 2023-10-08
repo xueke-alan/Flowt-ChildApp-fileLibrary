@@ -13,16 +13,9 @@ const micoAppJSON = {
       },
     },
     {
-      path: "user",
+      path: "quote",
       meta: {
         title: "测试规范",
-        iconName: "Guest24Regular",
-      },
-    },
-    {
-      path: "user2",
-      meta: {
-        title: "实验记录表",
         iconName: "Guest24Regular",
       },
     },

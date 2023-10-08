@@ -1,44 +1,38 @@
 <template>
   <div class="main-layout">
-
-    <div style="width:100%; height: 100%;">
-      <router-view />
-    </div>
-    <headerLine v-if="isLocal" />
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in" appear>
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
 <script lang="ts" setup>
+import wujie from "~/utils/wujie";
+import { onMounted, watch } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
-import headerLine from '~/layout/header/index.vue'
-
-import { onMounted, ref } from 'vue';
-
-const isLocal = ref(true)
 onMounted(() => {
-
-  // 如果是开发模式，则不显示头部
-
-  const accessToken = localStorage.getItem('ACCESS-TOKEN');
-
-  // 可以拿到accesstoken，就可以正常发送请求，
-  if (accessToken) {
-    console.log('Access Token:', accessToken);
-  } else {
-    console.log('Access Token not found in local storage.');
-  }
-
-
+  wujie.bus.$on("baseAppRouterChange", (path) => {
+    router.push({ path });
+  });
 })
 
 
+
+watch(
+  () => router.currentRoute.value.fullPath,
+  (newVal) => { wujie.bus.$emit("microAppRouterChange", newVal) }
+)
+
 </script>
 
-<style  scope>
+
+<style lang="less" scoped>
 .main-layout {
   height: 100%;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 }
 </style>
+

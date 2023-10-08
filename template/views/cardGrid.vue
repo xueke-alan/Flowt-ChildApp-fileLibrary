@@ -168,15 +168,7 @@ const handleClickBackBtn = () => {
 </script>
 
 <style lang="less" scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.25s;
-}
 
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 
 .cardItemGroup {
   display: flex;
