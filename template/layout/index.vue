@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import wujie from "~/utils/wujie";
+import wujie from "~/wujie";
 import { onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
@@ -19,8 +19,6 @@ onMounted(() => {
     router.push({ path });
   });
 })
-
-
 
 watch(
   () => router.currentRoute.value.fullPath,

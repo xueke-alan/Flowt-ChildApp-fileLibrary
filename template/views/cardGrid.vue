@@ -95,7 +95,7 @@ import {
   NButtonGroup,
   NButton,
 } from "naive-ui";
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
@@ -106,20 +106,6 @@ const matchedRouterPath = computed(
   () => router.currentRoute.value.matched[0].path
 );
 
-watch(matchedRouterPath, () => {
-  console.log("大路由发生变化");
-  // 应该是判断路由是否变化为耳机
-  hide.value = false;
-});
-watch(
-  () => route.name,
-  () => {
-    console.log("大路由发生变化");
-    // 应该是判断路由是否变化为耳机
-    hide.value = route.name != matchedRouter.value.name;
-  }
-);
-console.log(router);
 
 onMounted(() => {
   // console.log([]);
@@ -168,8 +154,6 @@ const handleClickBackBtn = () => {
 </script>
 
 <style lang="less" scoped>
-
-
 .cardItemGroup {
   display: flex;
   gap: 20px;

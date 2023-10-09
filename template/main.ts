@@ -4,6 +4,7 @@ import { router } from "~/router/index"; // 导入路由配置
 import { createApp } from "vue";
 import { setupStore } from "~/stores";
 import Resizer from 'v-resize-observer'
+import wujie from "./wujie";
 
 // 挂载函数
 function render() {
@@ -21,6 +22,10 @@ function render() {
 
 }
 
+wujie.bus.$on("baseAppRouterChange", (path) => {
+  console.log(path,'mainjs');
+  
+});
 
 render()
 

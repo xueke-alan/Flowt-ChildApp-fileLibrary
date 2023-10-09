@@ -12,7 +12,7 @@ import { NConfigProvider } from 'naive-ui'
 import { lighten } from '~/utils/index';
 import { useRouter } from 'vue-router';
 const router = useRouter()
-import wujie from "~/utils/wujie";
+import wujie from "~/wujie";
 
 const appTheme = "#FF6600"
 const getThemeOverrides = computed(() => {

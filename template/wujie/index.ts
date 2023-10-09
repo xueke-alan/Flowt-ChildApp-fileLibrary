@@ -7,4 +7,4 @@ if (window["$wujie"]) {
 }
 
 
-export default wujie 
+export default wujie
