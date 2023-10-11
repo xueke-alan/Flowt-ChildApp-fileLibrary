@@ -17,6 +17,13 @@
         "title": "报价单",
         "iconName": "ReceiptMoney24Regular"
       }
+    },
+    {
+      "path": "ops",
+      "meta": {
+        "title": "作业程序",
+        "iconName": "ReceiptMoney24Regular"
+      }
     }
   ]
 }
