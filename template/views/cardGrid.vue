@@ -4,7 +4,7 @@
       <n-scrollbar style="padding-right: 20px; height: 100%">
         <div style="
             display: flex;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             align-items: center;
             justify-content: space-between;
           ">
