@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import layout from "~/layout/index.vue";
 
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, onBeforeUnmount } from 'vue'
 import { NConfigProvider } from 'naive-ui'
 import { lighten } from '~/utils/index';
 import { useRouter } from 'vue-router';
@@ -39,6 +39,10 @@ onMounted(() => {
       path: wujie.props.currentRoutePath,
     });
   }
+})
+
+onBeforeUnmount(() => {
+  console.log('onUnmounted');
 
 })
 
