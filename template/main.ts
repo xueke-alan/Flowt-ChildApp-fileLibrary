@@ -22,10 +22,12 @@ function render() {
 
 }
 
-wujie.bus.$on("baseAppRouterChange", (path) => {
-  console.log(path,'mainjs');
-  
-});
+if (wujie.bus) {
+  wujie.bus.$on("baseAppRouterChange", (path) => {
+    console.log(path, 'mainjs');
+  });
+}
+
 
 render()
 

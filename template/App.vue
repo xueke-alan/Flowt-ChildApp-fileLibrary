@@ -34,9 +34,12 @@ const getThemeOverrides = computed(() => {
 onMounted(() => {
   // 初始化页面
   console.log(wujie.props.currentRoutePath);
-  router.push({
-    path: wujie.props.currentRoutePath,
-  });
+  if (wujie.props.currentRoutePath) {
+    router.push({
+      path: wujie.props.currentRoutePath,
+    });
+  }
+
 })
 
 </script>
