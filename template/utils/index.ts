@@ -1,11 +1,11 @@
 import { h } from "vue";
-import type { App, Plugin, Component } from "vue";
+import type { App, Plugin, Component, VNodeChild } from "vue";
 import { NIcon, NTag } from "naive-ui";
 
 /**
  * render 图标
  * */
-export function renderIcon(icon) {
+export function renderIcon(icon):(() => VNodeChild) {
   return () => h(NIcon, null, { default: () => h(icon) });
 }
 /**

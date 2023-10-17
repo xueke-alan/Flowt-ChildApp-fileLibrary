@@ -1,3 +1,5 @@
+import { renderIcon } from "!/template/utils";
+import { Reward24Regular, ShieldKeyhole24Regular, TabInprivateAccount24Regular, TvUsb24Regular } from "@vicons/fluent";
 import { RouteRecordRaw } from "vue-router";
 import sideView from "~/views/sideView.vue";
 
@@ -11,24 +13,42 @@ const routes: RouteRecordRaw = {
   component: sideView,
   children: [
     {
-      path: "equip",
-      name: "equip",
-      component: () => import("@/unique/views/equip.vue"),
-    },
-    {
       path: "security",
-      name: "security",
+      name: "账号安全",
       component: () => import("@/unique/views/security.vue"),
+      meta: {
+        icon: renderIcon(TabInprivateAccount24Regular),
+        breadcrumb: false,
+        divider: true
+      }
     },
     {
       path: "info",
-      name: "info",
+      name: "个人信息",
       component: () => import("@/unique/views/info.vue"),
+      meta: {
+        icon: renderIcon(ShieldKeyhole24Regular),
+        breadcrumb: false,
+
+      }
+    },
+    {
+      path: "equip",
+      name: "设备",
+      component: () => import("@/unique/views/equip.vue"),
+      meta: {
+        breadcrumb: false,
+        icon: renderIcon(TvUsb24Regular),
+      }
     },
     {
       path: "rewards",
-      name: "rewards",
+      name: "Rewards",
       component: () => import("@/unique/views/rewards.vue"),
+      meta: {
+        breadcrumb: false,
+        icon: renderIcon(Reward24Regular),
+      }
     },
   ],
 };

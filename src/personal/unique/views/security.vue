@@ -37,7 +37,7 @@
           <div class="dic">至少需要包含3种类型的字符12位</div>
         </div>
 
-        <n-rate :count="4" :value="newPswStrength" readonly color="#4fb233" size="small" class="pswStrength">
+        <n-rate :count="4" :value="newPswStrength" readonly :color="rateColor" size="small" class="pswStrength">
           <n-icon size="28" class="rateItem">
             <component :is="TextColorAccent24Filled"></component>
           </n-icon>
@@ -52,10 +52,12 @@
     <div class="mainInput">
       <div class="lable">确认密码</div>
 
-      <div class="inputGroup">
+      <div class="inputGroup" :class="{ notAllow: pswState.code != 4 }">
         <n-input :placeholder="pswState.btnLable" type="password" v-model:value="newPswCheck" />
-        <n-button ghost style="width: 150px;" :class="{ disableSub: pswState.code <= 3 }">
-          <transition name="fade" mode="out-in">
+        <n-button :ghost="pswState.code != 4" :secondary="pswState.code == 4"
+          :type="pswState.code != 4 ? undefined : 'primary'" style="width: 150px;"
+          :class="{ disableSub: pswState.code != 4 }">
+          <transition name="fade10" mode="out-in">
             <span :key="pswState.btnLable">{{ pswState.btnLable }}</span>
           </transition>
         </n-button>
@@ -102,6 +104,15 @@ import { analyzePassword } from '~/utils/password/strength'
 
 const newPsw = ref('')
 const newPswCheck = ref('')
+
+const rateColor = computed(() => {
+  if (newPswStrength.value >= 4) {
+    return '#4fb233'
+
+  } else {
+    return 'red'
+  }
+})
 
 // BUG 以数字开头的密码强度始终显示为0
 const newPswStrength = computed(() => {
@@ -158,6 +169,8 @@ const pswState = computed(() => {
     return { code: 4, btnLable: '提交修改' }
   }
 })
+
+
 </script>
   
 <style lang="less" scoped>
@@ -207,9 +220,13 @@ const pswState = computed(() => {
     justify-content: space-between;
     gap: 10px;
 
+    &.notAllow {
+      cursor: not-allowed;
+    }
+
     .disableSub {
       pointer-events: none;
-      color: #aaa;
+      color: rgba(194, 194, 194, 1);
     }
   }
 }

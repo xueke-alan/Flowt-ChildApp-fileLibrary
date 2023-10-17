@@ -8,28 +8,32 @@
       "path": "security",
       "meta": {
         "title": "账号安全",
-        "iconName": "PeopleCommunity24Regular"
+        "iconName": "PeopleCommunity24Regular",
+        "breadcrumb": false
       }
     },
     {
       "path": "equip",
       "meta": {
         "title": "设备归属",
-        "iconName": "PeopleCommunity24Regular"
+        "iconName": "PeopleCommunity24Regular",
+        "breadcrumb": false
       }
     },
     {
       "path": "rewards",
       "meta": {
         "title": "Rewards",
-        "iconName": "PeopleCommunity24Regular"
+        "iconName": "PeopleCommunity24Regular",
+        "breadcrumb": false
       }
     },
     {
       "path": "info",
       "meta": {
         "title": "个人信息",
-        "iconName": "PeopleCommunity24Regular"
+        "iconName": "PeopleCommunity24Regular",
+        "breadcrumb": false
       }
     }
   ]

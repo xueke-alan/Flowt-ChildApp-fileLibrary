@@ -29,7 +29,8 @@ function findMatchingConfig(analysis: { characterTypes: number, length: number }
     }
   }
 
-  return null;
+  return config[config.length - 1]
+
 }
 
 export {
