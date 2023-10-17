@@ -1,19 +1,33 @@
 {
-  "title": "",
-  "iconName": "",
+  "title": "个人中心",
+  "iconName": "PeopleCommunity24Regular",
   "children": [
     {
-      "path": "",
+      "path": "security",
       "meta": {
-        "title": "",
-        "iconName": ""
+        "title": "账号安全",
+        "iconName": "PeopleCommunity24Regular"
       }
     },
     {
-      "path": "",
+      "path": "equip",
       "meta": {
-        "title": "",
-        "iconName": ""
+        "title": "设备归属",
+        "iconName": "PeopleCommunity24Regular"
+      }
+    },
+    {
+      "path": "rewards",
+      "meta": {
+        "title": "Rewards",
+        "iconName": "PeopleCommunity24Regular"
+      }
+    },
+    {
+      "path": "info",
+      "meta": {
+        "title": "个人信息",
+        "iconName": "PeopleCommunity24Regular"
       }
     }
   ]
