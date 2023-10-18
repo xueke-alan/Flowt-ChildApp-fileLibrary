@@ -41,6 +41,19 @@ onMounted(() => {
 
 
 <style>
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+input[type="password"]::-o-clear {
+  display: none;
+}
+
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.25s ease;

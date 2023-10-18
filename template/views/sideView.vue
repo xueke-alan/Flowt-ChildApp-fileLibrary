@@ -5,8 +5,8 @@
     <n-layout-sider :width="200" :native-scrollbar="false" bordered collapse-mode="width" :collapsed-width="70"
       :collapsed="collapsed" show-trigger @collapse="collapsed = true" @expand="collapsed = false"
       :trigger-style="{ bottom: '20px', top: 'unset' }" :collapsed-trigger-style="{ bottom: '20px', top: 'unset' }">
-      <n-menu :root-indent="24" :indent="12" :options="menuOptions" @update:value="handleUpdateValue"
-        v-model:value="MenuVal" :collapsed-icon-size="20" :collapsed-width="68" />
+      <n-menu :root-indent="24" :indent="12" :options="menuOptions" @update:value="handleUpdateValue" :value="MenuVal"
+        :collapsed-icon-size="20" :collapsed-width="68" />
     </n-layout-sider>
 
     <n-layout content-style="padding: 24px;" :native-scrollbar="false">
@@ -22,19 +22,16 @@
 <script lang="ts" setup>
 
 
-import { NIcon, NLayout, NLayoutSider, NMenu } from 'naive-ui'
+import { NLayout, NLayoutSider, NMenu } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
 
-import { Reward24Regular, ShieldKeyhole24Regular, TabInprivateAccount24Regular } from "@vicons/fluent";
-import { VNodeChild, h, onMounted, ref } from 'vue';
 
-function renderIcon(icon) {
-  return () => h(NIcon, null, { default: () => h(icon) })
-}
+import { VNodeChild, computed, onMounted, ref } from 'vue';
 
 const menuOptions = ref<MenuOption[]>([])
 
-const MenuVal = ref('security')
+const MenuVal = computed(() => router.currentRoute.value.fullPath)
+
 const collapsed = ref(false)
 import { useRouter } from 'vue-router';
 const router = useRouter();
@@ -53,12 +50,15 @@ const handleUpdateValue = (key: string, item: MenuOption) => {
 }
 
 onMounted(() => {
-  console.log(router.currentRoute.value.matched[0].children);
+  console.log(router.getRoutes());
 
-  const childrens = router.currentRoute.value.matched[0].children
+  const childrens = router.getRoutes()
 
-  for (let i = 0; i < childrens.length; i++) {
+  // 去掉第一个和最后一个
+  for (let i = 1; i < childrens.length - 1; i++) {
     const element = childrens[i];
+    console.log(element);
+
     menuOptions.value.push({
       label: element.name,
       key: element.path,

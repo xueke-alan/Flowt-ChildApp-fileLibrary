@@ -37,7 +37,7 @@
         "types/*"
       ],
       "@/*": [
-        "src/personal/*"
+        "src/fileLibrary/*"
       ],
       "vite/client": [
         "node_modules/@types/vite__client"
@@ -49,10 +49,10 @@
     "template/**/*.d.ts",
     "template/**/*.tsx",
     "template/**/*.vue",
-    "src/personal/**/*.ts",
-    "src/personal/**/*.d.ts",
-    "src/personal/**/*.tsx",
-    "src/personal/**/*.vue",
+    "src/fileLibrary/**/*.ts",
+    "src/fileLibrary/**/*.d.ts",
+    "src/fileLibrary/**/*.tsx",
+    "src/fileLibrary/**/*.vue",
     "types/**/*.d.ts",
     "types/**/*.ts",
     "build/**/*.ts",
@@ -66,5 +66,5 @@
     "dist",
     "**/*.js"
   ],
-  "microAppName": "personal"
+  "microAppName": "fileLibrary"
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="cardGrid">
-    <n-card class="gridCon" :class="{ hide }" content-style="height:100%;padding-right:10px">
+    <n-card class="gridCon" :class="{ hide }" content-style="height:100%">
       <n-scrollbar style="padding-right: 20px; height: 100%">
         <div style="
             display: flex;
