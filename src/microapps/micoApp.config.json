@@ -1,18 +1,16 @@
 {
-  "name": "flowt_micro_microapps",
-  "baseUrl": "microapps",
   "title": "应用管理",
   "iconName": "PeopleCommunity24Regular",
   "children": [
     {
       "path": "list",
+
       "meta": {
         "title": "全部应用",
         "iconName": "PeopleCommunity24Regular",
-        "breadcrumb": false,
-        "hidden": true,
-        "activeMenu": "microapps"
+        "breadcrumb": false
       }
     }
+    
   ]
 }
