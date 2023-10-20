@@ -8,7 +8,9 @@ const routes: RouteRecordRaw = {
   name: "microapps",
   meta: {
     subtitle: "包含所有的标准，可选择分类方式",
-    iconName: 'PersonTag24Regular'
+    iconName: 'PersonTag24Regular',
+    group: "开发者",
+
   },
   component: sideView,
   children: [
@@ -19,9 +21,20 @@ const routes: RouteRecordRaw = {
       meta: {
         icon: renderIcon(TabInprivateAccount24Regular),
         breadcrumb: false,
+        group: "开发者",
         divider: true
       }
-    }
+    },
+    {
+      path: "reg",
+      name: "应用注册",
+      component: () => import("@/unique/views/list.vue"),
+      meta: {
+        icon: renderIcon(TabInprivateAccount24Regular),
+        breadcrumb: false,
+        group: "开发者",
+      }
+    },
   ],
 };
 

@@ -11,7 +11,19 @@
         "iconName": "PeopleCommunity24Regular",
         "breadcrumb": false,
         "hidden": true,
-        "activeMenu": "microapps"
+        "activeMenu": "microapps",
+        "group": "开发者"
+      }
+    },
+    {
+      "path": "reg",
+      "meta": {
+        "title": "应用注册",
+        "iconName": "PeopleCommunity24Regular",
+        "breadcrumb": false,
+        "hidden": true,
+        "activeMenu": "microapps",
+        "group": "开发者"
       }
     }
   ]

@@ -4,13 +4,14 @@
   "children": [
     {
       "path": "list",
-
       "meta": {
         "title": "全部应用",
         "iconName": "PeopleCommunity24Regular",
-        "breadcrumb": false
+        "breadcrumb": false,
+        "hidden": true,
+        "activeMenu": "microapps",
+        "group": "开发者"
       }
     }
-    
   ]
 }
